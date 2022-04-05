@@ -1,0 +1,28 @@
+<a
+  mat-list-item
+  [ngStyle]="{ 'padding-left': depth! * 12 + 'px' }"
+  (click)="onItemSelected(item)"
+  [ngClass]="{
+    active: item.route ? router.isActive(item.route, true) : false,
+    expanded: expanded
+  }"
+  class="a__menu__item"
+>
+  <i [class]="item.iconName" class="mx-1" id="sidebar__icon"></i>
+  <span class="sidebar__text">{{ item.displayName | translate }}</span>
+  <span class="ml-auto" *ngIf="item.children && item.children.length">
+    <i
+      class="fas fa-angle-up"
+      [@indicatorRotate]="expanded ? 'expanded' : 'collapsed'"
+    >
+    </i>
+  </span>
+</a>
+<div *ngIf="expanded" class="ml-2">
+  <app-menu-list-item
+    *ngFor="let child of item.children"
+    [item]="child"
+    [depth]="depth! + 1"
+  >
+  </app-menu-list-item>
+</div>

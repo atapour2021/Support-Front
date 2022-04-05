@@ -1,0 +1,21 @@
+$menu_item_background: #564ab1;
+$menu_item_background_hover: #bfbdcc;
+$menu_item_color: #3b5de7;
+
+.active {
+  #sidebar__icon {
+    color: $menu_item_color;
+  }
+
+  .sidebar__text {
+    color: $menu_item_color;
+  }
+}
+
+.a__menu__item {
+  font-size: 12px !important;
+
+  &:hover {
+    background-color: $menu_item_background_hover;
+  }
+}

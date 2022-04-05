@@ -1,0 +1,49 @@
+<div class="p-0">
+  <div class="p-3">
+    <div class="row align-items-center">
+      <div class="col">
+        <h6 class="m-0">
+          {{ "Notifications" | translate }}
+        </h6>
+      </div>
+      <div class="col-auto">
+        <a href="javascript:0;" routerLink="notification" class="small">
+          {{ "SeeAll" | translate }}</a
+        >
+      </div>
+    </div>
+  </div>
+  <div style="max-height: 230px">
+    <a
+      href="javascript:0;"
+      *ngFor="let notification of notifications | slice: 0:2; let i = index"
+    >
+      <div class="row notification__item my-4">
+        <div class="col-2">
+          <div class="col-4 my-2">
+            <i class="fas fa-user fa-3x"></i>
+          </div>
+        </div>
+        <div class="row col-10">
+          <div class="row">
+            <span class="col-6">
+              {{ notification.title }}
+            </span>
+            <p class="col-6 d-flex justify-content-end text-primary">
+              {{ notification.timeAgo }}
+            </p>
+          </div>
+          <p class="col-12">
+            {{ notification.description }}
+          </p>
+        </div>
+      </div>
+    </a>
+  </div>
+  <div class="p-2 border-top text-center">
+    <a href="javascript:void(0)" routerLink="notification">
+      <i class="fas fa-eye mr-2 mt-1"></i>
+      {{ "SeeAll" | translate }}
+    </a>
+  </div>
+</div>

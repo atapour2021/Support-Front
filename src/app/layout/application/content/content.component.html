@@ -1,0 +1,77 @@
+<mat-toolbar class="tool-bar">
+  <button mat-icon-button (click)="sidenav.toggle()">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <xng-breadcrumb [autoGenerate]="false"></xng-breadcrumb>
+
+  <span class="spacer"></span>
+
+  <button
+    mat-icon-button
+    [matBadge]="count"
+    matBadgePosition="before"
+    matBadgeColor="accent"
+    (click)="openShoppingCart()"
+  >
+    <i class="fa fa-shopping-cart"></i>
+  </button>
+  <button id="btnCount" class="d-none" (click)="updateCountClick()"></button>
+  <button
+    mat-icon-button
+    matBadge="2"
+    matBadgePosition="before"
+    matBadgeColor="accent"
+    (click)="openNotifList()"
+  >
+    <i class="fa fa-bell"></i>
+  </button>
+  <button class="btn__profile" [matMenuTriggerFor]="menu" mat-icon-button>
+    <i class="fas fa-user"></i>
+    <!-- <img
+      *ngIf="avatar.avatar"
+      class="img"
+      width="20"
+      height="20"
+      [src]="avatar.avatar"
+    /> -->
+    <span class="d-none d-sm-inline">
+      firstName lastName
+    </span>
+  </button>
+  <mat-menu #menu="matMenu">
+    <button *ngIf="completeRegister" mat-menu-item (click)="moveToProfile()">
+      <i class="fas fa-address-card"></i>
+      {{ "Profile" | translate }}
+    </button>
+    <button mat-menu-item (click)="onLogOutClick()">
+      <i class="fas fa-sign-out-alt"></i>
+      {{ "LogOut" | translate }}
+    </button>
+  </mat-menu>
+</mat-toolbar>
+
+<mat-sidenav-container>
+  <mat-sidenav #sidenav="matSidenav" class="sidenav">
+    <div class="logo-nav text-center">
+      <img class="logo__nav" src="../../../assets/img/xuser.jpg" />
+      <!-- <img *ngIf="avatar.avatar" class="avatar" [src]="avatar.avatar" /> -->
+
+      <span *ngIf="user && user.isLegal">{{ user.companyName }}</span>
+      <span *ngIf="user && !user.isLegal"
+        >{{ user.firstName }} {{ user.lastName }}</span
+      >
+      <span *ngIf="!user">{{ "UserName" | translate }}</span>
+    </div>
+    <mat-nav-list>
+      <app-menu-list-item
+        *ngFor="let item of navItems"
+        [item]="item"
+      ></app-menu-list-item>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <div class="container-fluid">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

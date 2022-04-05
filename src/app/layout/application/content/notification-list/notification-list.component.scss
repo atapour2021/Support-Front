@@ -1,0 +1,13 @@
+a,
+u {
+  text-decoration: none;
+}
+
+.notification__item {
+  border-radius: 8px;
+  color: black;
+
+  &:hover {
+    background-color: #c9cae4;
+  }
+}

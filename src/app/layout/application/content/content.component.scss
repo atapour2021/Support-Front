@@ -1,0 +1,58 @@
+.logo-nav {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+
+  .logo__nav {
+    width: 100px;
+    border-radius: 50%;
+    border: 2px dashed;
+    padding: 6px;
+    margin-bottom: 5px;
+  }
+  .avatar {
+    width: 100px;
+    border-radius: 50%;
+    padding: 6px;
+    margin-bottom: 5px;
+    width: 100px;
+    height: 100px;
+  }
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+.btn__profile {
+  width: auto !important;
+}
+
+.tool-bar {
+  height: 65px;
+  background-color: white;
+  color: black;
+}
+
+.sidenav {
+  padding: 20px;
+  width: 250px;
+}
+
+mat-sidenav-container {
+  height: calc(100vh - 65px);
+
+  .container {
+    width: 100%;
+    margin-top: 3%;
+    margin-right: auto;
+    margin-left: auto;
+  }
+}
+
+.img {
+  border-radius: 50%;
+  margin-left: 0.2rem;
+}

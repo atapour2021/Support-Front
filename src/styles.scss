@@ -1,1 +1,20 @@
-/* You can add global styles to this file, and also import other style files */
+@import '~bootstrap/dist/css/bootstrap.min.css';
+@import "./assets/fontawesome/css/all.css";
+@import "./assets/farsi-fonts-styles/secondary-iran-yekan.css";
+@import "./assets/farsi-fonts-styles/primary-iran-yekan.css";
+@import "~@angular/material/theming";
+
+$custom-typography: mat-typography-config(
+  $font-family: "primary-font",
+);
+@include mat-core($custom-typography);
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  height: 100vh;
+  width: 100%;
+}
