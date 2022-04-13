@@ -1,0 +1,30 @@
+<mat-form-field class="w-100" appearance="outline">
+  <mat-label>{{ Label | translate }}</mat-label>
+  <input
+    matInput
+    [autocomplete]="autocomplete"
+    [(ngModel)]="value"
+    #model="ngModel"
+    (ngModelChange)="handleChange($event)"
+    [disabled]="isDisabled"
+    [required]="isRequired"
+    [maxlength]="maxlength"
+    [minlength]="minlength"
+    (keypress)="validate($event)"
+  />
+  <div matSuffix>
+    <ng-container *ngTemplateOutlet="suftFixTemplate"> </ng-container>
+  </div>
+  <div matPrefix>
+    <ng-container *ngTemplateOutlet="preFixTemplate"> </ng-container>
+  </div>
+  <mat-error *ngIf="model.errors?.maxlength">
+    {{ Label | translate }} {{ "IsInValid" | translate }}
+  </mat-error>
+  <mat-error *ngIf="model.errors?.minlength">
+    {{ Label | translate }} {{ "IsInValid" | translate }}
+  </mat-error>
+  <mat-error *ngIf="model.errors?.required">
+    {{ Label | translate }} {{ "IsRequired" | translate }}
+  </mat-error>
+</mat-form-field>

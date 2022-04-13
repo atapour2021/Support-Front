@@ -5,6 +5,7 @@ import {
   HttpErrorInterceptor,
 } from './interceptors/index';
 import { ApiHelperService, CoreService } from './services/index';
+import { NotificationService } from './services/notification.service';
 
 @NgModule({
   imports: [HttpClientModule],
@@ -24,6 +25,9 @@ import { ApiHelperService, CoreService } from './services/index';
     },
     {
       provide: ApiHelperService,
+    },
+    {
+      provide: NotificationService,
     },
   ],
   exports: [],

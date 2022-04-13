@@ -5,6 +5,7 @@ import { MatSidenav } from '@angular/material/sidenav';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { delay } from 'rxjs/operators';
+import { AuthService } from 'src/app/auth/service/auth.service';
 import { NavItem } from '../menu-list-item/nav-item';
 import { NotificationListComponent } from './notification-list/notification-list.component';
 
@@ -64,7 +65,8 @@ export class ContentComponent implements OnInit, AfterViewInit {
     public translate: TranslateService,
     private observer: BreakpointObserver,
     private _bottomSheet: MatBottomSheet,
-    private router: Router
+    private router: Router,
+    private authService: AuthService
   ) {
     translate.addLangs(['en', 'persian']);
     translate.setDefaultLang('persian');
@@ -105,7 +107,9 @@ export class ContentComponent implements OnInit, AfterViewInit {
   updateCountClick(): void {}
   getCount(id: string) {}
 
-  onLogOutClick(): void {}
+  onLogOutClick(): void {
+    this.authService.logout();
+  }
   openNotifList(): void {
     this._bottomSheet.open(NotificationListComponent, {
       data: {

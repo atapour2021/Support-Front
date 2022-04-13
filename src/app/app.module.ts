@@ -8,6 +8,7 @@ import { BreadcrumbModule } from 'xng-breadcrumb';
 import { environment } from '../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { AuthModule } from './auth';
 import { CoreModule } from './core/core.module';
 import {
   BaseComponent,
@@ -41,6 +42,7 @@ const routes: Routes = [];
     ToastNotificationsModule,
     BreadcrumbModule,
     CoreModule,
+    AuthModule,
   ],
   providers: [
     {

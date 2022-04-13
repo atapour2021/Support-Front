@@ -1,0 +1,24 @@
+<mat-form-field class="w-100" appearance="outline">
+  <mat-label>{{ Label | translate }}</mat-label>
+  <input
+    matInput
+    [(ngModel)]="value"
+    #model="ngModel"
+    (ngModelChange)="handleChange($event)"
+    [disabled]="isDisabled"
+    [required]="isRequired"
+    [matDatepicker]="datePickerEL"
+  />
+  <div matSuffix>
+    <mat-datepicker-toggle [for]="datePickerEL"></mat-datepicker-toggle>
+    <button
+      *ngIf="value"
+      class="btn btn-close clear"
+      (click)="onclearClick()"
+    ></button>
+  </div>
+  <mat-datepicker #datePickerEL></mat-datepicker>
+  <mat-error *ngIf="model.errors?.required">
+    {{ Label | translate }} {{ "IsRequired" | translate }}
+  </mat-error>
+</mat-form-field>

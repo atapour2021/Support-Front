@@ -1,0 +1,37 @@
+<mat-form-field class="w-100" appearance="outline">
+  <mat-label>{{ Label | translate }}</mat-label>
+  <mat-select
+    [(ngModel)]="value"
+    #model="ngModel"
+    (ngModelChange)="handleChange($event)"
+    [disabled]="isDisabled"
+    [required]="isRequired"
+  >
+    <input
+      *ngIf="filterable"
+      (keyup)="onFilterChange($event!.target)"
+      class="form-control"
+      [placeholder]="'Search' | translate"
+      autocomplete="off"
+    />
+    <mat-option *ngFor="let item of data" [value]="item[valueField]"
+      >{{ item[textField] }}
+    </mat-option>
+    <mat-option *ngIf="data.length === 0 && !loading"
+      >{{ "NoDataTextForShow" | translate }}
+    </mat-option>
+    <mat-option *ngIf="loading">
+      <mat-progress-spinner
+        style="margin: 0 auto"
+        [diameter]="20"
+        mode="indeterminate"
+      ></mat-progress-spinner>
+    </mat-option>
+  </mat-select>
+  <div matSuffix *ngIf="value">
+    <button class="btn btn-close clear" (click)="onclearClick()"></button>
+  </div>
+  <mat-error *ngIf="model.errors?.required">
+    {{ Label | translate }} {{ "IsRequired" | translate }}
+  </mat-error>
+</mat-form-field>

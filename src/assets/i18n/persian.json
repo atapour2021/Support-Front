@@ -1,4 +1,12 @@
 {
   "FirstName": "نام",
-  "Dashboard": "داشبورد"
+  "Dashboard": "داشبورد",
+  "SignUpNow": "ثبت نام کن",
+  "UserName": "نام کاربری",
+  "Password": "کلمه عبور",
+  "Login": "ورود",
+  "Register": "ثبت نام",
+  "LogOut": "خروج",
+  "Profile": "پروفایل",
+  "NationalCode": "کد ملی"
 }

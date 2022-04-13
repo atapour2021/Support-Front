@@ -1,8 +1,13 @@
-<div class="w-100 d-flex justify-content-end">
-  <button [title]="'Logout' | translate" mat-icon-button (click)="onLogout()">
-    <i class="fas fa-sign-out-alt fa-2x"></i>
-  </button>
-</div>
-<div class="content d-flex justify-content-center align-items-center">
-  <router-outlet></router-outlet>
+<div dir="ltr" class="container">
+  <div class="screen">
+    <div class="screen__content">
+      <router-outlet></router-outlet>
+    </div>
+    <div class="screen__background">
+      <span class="screen__background__shape screen__background__shape4"></span>
+      <span class="screen__background__shape screen__background__shape3"></span>
+      <span class="screen__background__shape screen__background__shape2"></span>
+      <span class="screen__background__shape screen__background__shape1"></span>
+    </div>
+  </div>
 </div>

@@ -1,0 +1,48 @@
+<form class="login">
+  <div class="login__field">
+    <i class="login__icon fas fa-user"></i>
+    <input
+      name="userName"
+      type="text"
+      class="login__input"
+      [placeholder]="'UserName' | translate"
+      [(ngModel)]="registerData.userName"
+    />
+  </div>
+  <div class="login__field">
+    <i class="login__icon fas fa-user"></i>
+    <input
+      name="nationalCode"
+      type="text"
+      class="login__input"
+      [placeholder]="'NationalCode' | translate"
+      [(ngModel)]="registerData.nationalCode"
+    />
+  </div>
+  <div class="login__field">
+    <i class="login__icon fas fa-lock"></i>
+    <input
+      name="password"
+      type="password"
+      class="login__input"
+      [placeholder]="'Password' | translate"
+      [(ngModel)]="registerData.password"
+    />
+  </div>
+  <button class="button login__submit" (click)="onRegisterClick()">
+    <span class="button__text">{{ "Register" | translate }}</span>
+    <i class="button__icon fas fa-chevron-right"></i>
+  </button>
+</form>
+
+<div class="social-login">
+  <a class="text-light" routerLink="/auth/login">{{ "Login" | translate }}</a>
+  <div class="social-icons">
+    <a
+      href="javascript:void(0)"
+      class="social-login__icon fab fa-instagram"
+    ></a>
+    <a href="javascript:void(0)" class="social-login__icon fab fa-facebook"></a>
+    <a href="javascript:void(0)" class="social-login__icon fab fa-twitter"></a>
+  </div>
+</div>

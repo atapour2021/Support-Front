@@ -1,0 +1,40 @@
+<form class="login">
+  <div class="login__field">
+    <i class="login__icon fas fa-user"></i>
+    <input
+      name="userName"
+      type="text"
+      class="login__input"
+      [placeholder]="'UserName' | translate"
+      [(ngModel)]="loginData.userName"
+    />
+  </div>
+  <div class="login__field">
+    <i class="login__icon fas fa-lock"></i>
+    <input
+      name="password"
+      type="password"
+      class="login__input"
+      [placeholder]="'Password' | translate"
+      [(ngModel)]="loginData.password"
+    />
+  </div>
+  <button class="button login__submit" (click)="onLoginClick()">
+    <span class="button__text">{{ "Login" | translate }}</span>
+    <i class="button__icon fas fa-chevron-right"></i>
+  </button>
+</form>
+
+<div class="social-login">
+  <a class="text-light" routerLink="/auth/register">{{
+    "Register" | translate
+  }}</a>
+  <div class="social-icons">
+    <a
+      href="javascript:void(0)"
+      class="social-login__icon fab fa-instagram"
+    ></a>
+    <a href="javascript:void(0)" class="social-login__icon fab fa-facebook"></a>
+    <a href="javascript:void(0)" class="social-login__icon fab fa-twitter"></a>
+  </div>
+</div>

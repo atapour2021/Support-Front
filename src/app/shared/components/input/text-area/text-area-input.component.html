@@ -1,0 +1,25 @@
+<mat-form-field class="w-100" appearance="outline">
+  <mat-label>{{ Label | translate }}</mat-label>
+  <textarea
+    matInput
+    cdkTextareaAutosize
+    #autosize="cdkTextareaAutosize"
+    [cdkAutosizeMinRows]="minRows"
+    [cdkAutosizeMaxRows]="maxRows"
+    [(ngModel)]="value"
+    #model="ngModel"
+    (ngModelChange)="handleChange($event)"
+    [required]="isRequired"
+    [maxlength]="maxlength"
+    [minlength]="minlength"
+  ></textarea>
+  <mat-error *ngIf="model.errors?.maxlength">
+    {{ Label | translate }} {{ "IsInValid" | translate }}
+  </mat-error>
+  <mat-error *ngIf="model.errors?.minlength">
+    {{ Label | translate }} {{ "IsInValid" | translate }}
+  </mat-error>
+  <mat-error *ngIf="model.errors?.required">
+    {{ Label | translate }} {{ "IsRequired" | translate }}
+  </mat-error>
+</mat-form-field>

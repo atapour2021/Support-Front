@@ -6,8 +6,22 @@ import { RouterModule } from '@angular/router';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { MaterialModule } from './material.module';
+import {
+  ComboboxComponent,
+  DatePickerComponent,
+  NumericTextComponent,
+  TextAreaInputComponent,
+  TextComponent,
+} from './components';
 
 @NgModule({
+  declarations: [
+    ComboboxComponent,
+    DatePickerComponent,
+    NumericTextComponent,
+    TextAreaInputComponent,
+    TextComponent,
+  ],
   imports: [
     CommonModule,
     FormsModule,
@@ -22,8 +36,16 @@ import { MaterialModule } from './material.module';
     }),
     MaterialModule,
   ],
-  declarations: [],
-  exports: [CommonModule, TranslateModule, MaterialModule],
+  exports: [
+    CommonModule,
+    TranslateModule,
+    MaterialModule,
+    ComboboxComponent,
+    DatePickerComponent,
+    NumericTextComponent,
+    TextAreaInputComponent,
+    TextComponent,
+  ],
   providers: [],
 })
 export class SharedModule {}
