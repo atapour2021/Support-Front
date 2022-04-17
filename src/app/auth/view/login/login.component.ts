@@ -35,7 +35,7 @@ export class LoginComponent {
       )
       .subscribe((result: any) => {
         if (result.success) {
-          localStorage.setItem('token', result.access_token);
+          localStorage.setItem('token', result.data);
           this.router.navigate(['app/dashboard']);
         } else {
           this.notificationService.showNotification(result);

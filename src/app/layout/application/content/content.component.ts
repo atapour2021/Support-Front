@@ -7,6 +7,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { delay } from 'rxjs/operators';
 import { AuthService } from 'src/app/auth/service/auth.service';
 import { NavItem } from '../menu-list-item/nav-item';
+import { NavService } from '../menu-list-item/nav.service';
 import { NotificationListComponent } from './notification-list/notification-list.component';
 
 export interface INotificationList {
@@ -66,7 +67,8 @@ export class ContentComponent implements OnInit, AfterViewInit {
     private observer: BreakpointObserver,
     private _bottomSheet: MatBottomSheet,
     private router: Router,
-    private authService: AuthService
+    private authService: AuthService,
+    private navService: NavService
   ) {
     translate.addLangs(['en', 'persian']);
     translate.setDefaultLang('persian');
@@ -94,14 +96,9 @@ export class ContentComponent implements OnInit, AfterViewInit {
   }
 
   setMenuItem(): void {
-    this.navItems = [
-      {
-        displayName: 'Dashboard',
-        iconName: 'fas fa-tachometer-alt',
-        route: 'app/dashboard',
-        isPermission: this.completeRegister,
-      },
-    ];
+    this.navService.getMenu().subscribe((menu: any) => {
+      this.navItems.push(menu.data);
+    });
   }
 
   updateCountClick(): void {}

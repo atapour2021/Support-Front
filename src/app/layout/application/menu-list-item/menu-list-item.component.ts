@@ -52,20 +52,11 @@ export class MenuListItemComponent implements OnInit {
   }
 
   onItemSelected(item: NavItem) {
-    if (!item.isPermission) {
-      this._notificationService.open({
-        text: 'شما به این بخش دسترسی ندارید',
-        caption: 'خطا',
-        type: 'danger',
-        duration: 4000,
-      });
-    } else {
-      if (!item.children || !item.children.length) {
-        this.router.navigate([item.route]);
-      }
-      if (item.children && item.children.length) {
-        this.expanded = !this.expanded;
-      }
+    if (!item.children || !item.children.length) {
+      this.router.navigate([item.route]);
+    }
+    if (item.children && item.children.length) {
+      this.expanded = !this.expanded;
     }
   }
 }
