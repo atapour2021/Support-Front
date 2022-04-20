@@ -97,7 +97,7 @@ export class ContentComponent implements OnInit, AfterViewInit {
 
   setMenuItem(): void {
     this.navService.getMenu().subscribe((menu: any) => {
-      this.navItems.push(menu.data);
+      this.navItems = menu.data;
     });
   }
 
