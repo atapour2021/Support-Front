@@ -1,40 +1,60 @@
-<form class="login">
+<form class="login" #registerForm="ngForm">
   <div class="login__field">
-    <i class="login__icon fas fa-user"></i>
-    <input
-      name="userName"
-      type="text"
-      class="login__input"
-      [placeholder]="'UserName' | translate"
-      [(ngModel)]="registerData.userName"
-    />
+    <app-auth-input
+      [iconClass]="'login__icon fas fa-user'"
+      name="fullName"
+      [type]="'text'"
+      [Label]="'FullName' | translate"
+      [(ngModel)]="registerData.fullName"
+      [isRequired]="true"
+    ></app-auth-input>
   </div>
   <div class="login__field">
-    <i class="login__icon fas fa-user"></i>
-    <input
+    <app-auth-input
+      [iconClass]="'login__icon fa fa-code'"
       name="nationalCode"
-      type="text"
-      class="login__input"
-      [placeholder]="'NationalCode' | translate"
+      [type]="'numericText'"
+      [Label]="'NationalCode' | translate"
       [(ngModel)]="registerData.nationalCode"
-    />
+      [isRequired]="true"
+      [maxlength]="10"
+      [minlength]="10"
+    ></app-auth-input>
   </div>
   <div class="login__field">
-    <i class="login__icon fas fa-lock"></i>
-    <input
-      name="password"
-      type="password"
-      class="login__input"
-      [placeholder]="'Password' | translate"
-      [(ngModel)]="registerData.password"
-    />
+    <app-auth-input
+      [iconClass]="'login__icon fas fa-user'"
+      name="userName"
+      [type]="'text'"
+      [Label]="'UserName' | translate"
+      [(ngModel)]="registerData.userName"
+      [isRequired]="true"
+    ></app-auth-input>
   </div>
-  <button class="button login__submit" (click)="onRegisterClick()">
+  <div class="login__field">
+    <app-auth-input
+      [iconClass]="'login__icon fa fa-key'"
+      name="password"
+      [type]="'password'"
+      [Label]="'Password' | translate"
+      [(ngModel)]="registerData.password"
+      [isRequired]="true"
+    ></app-auth-input>
+  </div>
+  <button
+    [disabled]="
+      !registerData.fullName ||
+      !registerData.nationalCode ||
+      !registerData.userName ||
+      !registerData.password
+    "
+    class="button login__submit"
+    (click)="onRegisterClick()"
+  >
     <span class="button__text">{{ "Register" | translate }}</span>
     <i class="button__icon fas fa-chevron-right"></i>
   </button>
 </form>
-
 <div class="social-login">
   <a class="text-light" routerLink="/auth/login">{{ "Login" | translate }}</a>
   <div class="social-icons">

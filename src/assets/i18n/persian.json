@@ -8,5 +8,8 @@
   "Register": "ثبت نام",
   "LogOut": "خروج",
   "Profile": "پروفایل",
-  "NationalCode": "کد ملی"
+  "NationalCode": "کد ملی",
+  "FullName": "نام و نام خانوادگی",
+  "IsInValid": "معتبر نیست",
+  "IsRequired": "اجباری است"
 }
