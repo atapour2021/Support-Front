@@ -11,5 +11,14 @@
   "NationalCode": "کد ملی",
   "FullName": "نام و نام خانوادگی",
   "IsInValid": "معتبر نیست",
-  "IsRequired": "اجباری است"
+  "IsRequired": "اجباری است",
+  "ProfileTestDescription": "Full Stack Developer",
+  "AddAvatar": "ثبت آواتار",
+  "Remove": "حذف",
+  "EditProfile": "ویرایش پروفایل",
+  "Role": "سمت",
+  "MobileNumber": "شماره موبایل",
+  "Email": "ایمیل",
+  "Description": "توضیحات",
+  "Age": "سن"
 }

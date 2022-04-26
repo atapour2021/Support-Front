@@ -22,24 +22,18 @@ export interface IParam {
 })
 export class ApiHelperService {
   private http: HttpClient;
+  private baseUrl!: string;
 
   constructor(@Inject(HttpClient) http: HttpClient) {
     this.http = http;
+    this.baseUrl = environment.baseUrl;
   }
 
-  get<T>(fromString: string, url: string): Observable<T> {
+  get<T>(url: string): Observable<T> {
     let url_ = url;
 
-    const options = {
-      params: new HttpParams({
-        fromString: fromString,
-      }),
-    };
-
-    options.params = this.removeNullValuesFromQueryParams(options.params);
-
     return this.http
-      .request('get', url_, options)
+      .request('get', url_)
       .pipe(
         _observableMergeMap((response_: any) => {
           return _observableOf<T>(<any>response_);
@@ -96,33 +90,57 @@ export class ApiHelperService {
       );
   }
 
-  downloadFile(id: string): Observable<any> {
-    let url_ = ``;
+  put<T>(body: T, url: string, id: string): Observable<T> {
+    let url_ = `${url}/${id}`;
+    let options_: any = {
+      body: body,
+    };
 
     return this.http
-      .request('get', url_)
+      .request('put', url_, options_)
       .pipe(
         _observableMergeMap((response_: any) => {
-          return _observableOf(<any>response_);
+          return _observableOf<T>(<any>response_);
         })
       )
       .pipe(
         _observableCatch((response_: any) => {
           if (response_ instanceof HttpResponseBase) {
             try {
-              return _observableOf(<any>response_);
+              return _observableOf<T>(<any>response_);
             } catch (e) {
-              return _observableOf(<any>_observableThrow(e));
+              return <Observable<T>>(<any>_observableThrow(e));
             }
-          } else {
-            return _observableOf(<any>_observableOf(response_));
-          }
+          } else return <Observable<T>>(<any>_observableThrow(response_));
         })
       );
   }
 
-  uploadFile(body: { file: File }): Observable<string> {
-    let url_ = ``;
+  delete<T>(url: string, id: string): Observable<T> {
+    let url_ = `${url}/${id}`;
+
+    return this.http
+      .request('delete', url_)
+      .pipe(
+        _observableMergeMap((response_: any) => {
+          return _observableOf<T>(<any>response_);
+        })
+      )
+      .pipe(
+        _observableCatch((response_: any) => {
+          if (response_ instanceof HttpResponseBase) {
+            try {
+              return _observableOf<T>(<any>response_);
+            } catch (e) {
+              return <Observable<T>>(<any>_observableThrow(e));
+            }
+          } else return <Observable<T>>(<any>_observableThrow(response_));
+        })
+      );
+  }
+
+  uploadFile(body: { file: File }): Observable<any> {
+    let url_ = `${this.baseUrl}/file-uploader`;
     let options_: any = {
       body: body,
     };

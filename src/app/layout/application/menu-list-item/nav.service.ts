@@ -26,6 +26,6 @@ export class NavService {
 
   getMenu(): Observable<NavItem> {
     const url = `${this.baseUrl}/Menu`;
-    return this.apiHelperService.get<NavItem>('', url);
+    return this.apiHelperService.get<NavItem>(url);
   }
 }

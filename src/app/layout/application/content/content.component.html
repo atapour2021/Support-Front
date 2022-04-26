@@ -6,7 +6,7 @@
 
   <span class="spacer"></span>
 
-  <button id="btnCount" class="d-none" (click)="updateCountClick()"></button>
+  <button id="layoutBtn" class="d-none" (click)="updateLayout()"></button>
   <button
     mat-icon-button
     matBadge="2"
@@ -17,15 +17,15 @@
     <i class="fa fa-bell"></i>
   </button>
   <button class="btn__profile" [matMenuTriggerFor]="menu" mat-icon-button>
-    <i class="fas fa-user"></i>
-    <!-- <img
-      *ngIf="avatar.avatar"
+    <i *ngIf="!profile.avatar" class="fas fa-user"></i>
+    <img
+      *ngIf="profile.avatar"
+      [src]="baseUrl + '/' + profile.avatar"
       class="img"
-      width="20"
-      height="20"
-      [src]="avatar.avatar"
-    /> -->
-    <!-- <span class="d-none d-sm-inline"> firstName lastName </span> -->
+      width="30"
+      height="30"
+    />
+    <span class="d-none d-sm-inline"> {{ profile.fullName }} </span>
   </button>
   <mat-menu #menu="matMenu">
     <button *ngIf="completeRegister" mat-menu-item (click)="moveToProfile()">
@@ -42,14 +42,19 @@
 <mat-sidenav-container>
   <mat-sidenav #sidenav="matSidenav" class="sidenav">
     <div class="logo-nav text-center">
-      <img class="logo__nav" src="../../../assets/img/xuser.jpg" />
-      <!-- <img *ngIf="avatar.avatar" class="avatar" [src]="avatar.avatar" /> -->
+      <img
+        *ngIf="!profile.avatar"
+        class="logo__nav"
+        src="../../../assets/img/xuser.jpg"
+      />
+      <img
+        *ngIf="profile.avatar"
+        class="avatar"
+        [src]="baseUrl + '/' + profile.avatar"
+      />
 
-      <span *ngIf="user && user.isLegal">{{ user.companyName }}</span>
-      <span *ngIf="user && !user.isLegal"
-        >{{ user.firstName }} {{ user.lastName }}</span
-      >
-      <span *ngIf="!user">{{ "UserName" | translate }}</span>
+      <span *ngIf="profile">{{ profile.fullName }}</span>
+      <span *ngIf="!profile">{{ "UserName" | translate }}</span>
     </div>
     <mat-nav-list>
       <app-menu-list-item

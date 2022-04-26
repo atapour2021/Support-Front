@@ -6,9 +6,12 @@ import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { delay } from 'rxjs/operators';
 import { AuthService } from 'src/app/auth/service/auth.service';
+import { ProfileDto } from 'src/app/modules/profile/dto/profile.dto';
+import { ProfileService } from 'src/app/modules/profile/service/profile.service';
 import { NavItem } from '../menu-list-item/nav-item';
 import { NavService } from '../menu-list-item/nav.service';
 import { NotificationListComponent } from './notification-list/notification-list.component';
+import { environment } from 'src/environments/environment';
 
 export interface INotificationList {
   id: number | undefined;
@@ -56,7 +59,10 @@ export class ContentComponent implements OnInit, AfterViewInit {
     },
   ];
   count!: number;
-  user: any;
+
+  profileId: string | undefined;
+  profile = new ProfileDto();
+  baseUrl: string | undefined;
 
   @ViewChild(MatSidenav)
   sidenav!: MatSidenav;
@@ -68,16 +74,27 @@ export class ContentComponent implements OnInit, AfterViewInit {
     private _bottomSheet: MatBottomSheet,
     private router: Router,
     private authService: AuthService,
-    private navService: NavService
+    private navService: NavService,
+    private profileService: ProfileService
   ) {
     translate.addLangs(['en', 'persian']);
     translate.setDefaultLang('persian');
 
     this._observer = this.observer;
+
+    this.profileId = JSON.parse(localStorage.getItem('user')!).profileId;
+    this.baseUrl = `${environment.baseUrl}/file-uploader`;
   }
 
   ngOnInit(): void {
     this.setMenuItem();
+    this.getProfile(this.profileId!);
+  }
+
+  getProfile(id: string): void {
+    this.profileService.getProfile(id).subscribe((response_: any) => {
+      this.profile.init(response_);
+    });
   }
 
   ngAfterViewInit(): void {
@@ -101,7 +118,10 @@ export class ContentComponent implements OnInit, AfterViewInit {
     });
   }
 
-  updateCountClick(): void {}
+  updateLayout(): void {
+    this.getProfile(this.profileId!);
+  }
+
   getCount(id: string) {}
 
   onLogOutClick(): void {

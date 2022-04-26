@@ -28,6 +28,7 @@ export class TextComponent implements OnInit {
   @Input() isDisabled = false;
   @Input() maxlength = 500;
   @Input() minlength = 0;
+  @Input() emailValidator = false;
   @Input() suftFix!: TemplateRef<any>;
   @Input() preFix!: TemplateRef<any>;
 

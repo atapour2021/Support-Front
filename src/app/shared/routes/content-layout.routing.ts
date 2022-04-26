@@ -9,6 +9,10 @@ export const CONTENT_ROUTES: Routes = [
     path: 'auth',
     loadChildren: () => import('../../auth').then((m) => m.AuthModule),
   },
+  {
+    path: 'profile',
+    loadChildren: () => import('../../modules').then((m) => m.ProfileModule),
+  },
 
   {
     path: '**',

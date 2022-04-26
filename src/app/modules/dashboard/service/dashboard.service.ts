@@ -13,16 +13,4 @@ export class DashboardService {
   constructor(private _apiService: ApiHelperService) {
     // this.baseUrl = environment.fiscalMemory;
   }
-
-  getChartData(body: InvoiceReportDto): Observable<any> {
-    let params = '';
-    const url = `InvoiceQuery/InvoiceReport`;
-    if (body.taxpayerAggregateId !== undefined)
-      params += `?TaxpayerAggregateId=${body.taxpayerAggregateId}`;
-    if (body.startDate !== undefined)
-      params += `&&StartDateTime=${body.startDate}`;
-    if (body.endDate !== undefined) params += `&&EndDateTime=${body.endDate}`;
-
-    return this._apiService.get<any>(params, url);
-  }
 }

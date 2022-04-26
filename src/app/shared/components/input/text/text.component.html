@@ -10,6 +10,7 @@
     [required]="isRequired"
     [maxlength]="maxlength"
     [minlength]="minlength"
+    [email]="emailValidator"
   />
   <div matSuffix>
     <ng-container *ngTemplateOutlet="suftFixTemplate"> </ng-container>
@@ -25,5 +26,8 @@
   </mat-error>
   <mat-error *ngIf="model.errors?.required">
     {{ Label | translate }} {{ "IsRequired" | translate }}
+  </mat-error>
+  <mat-error *ngIf="model.errors?.email">
+    {{ Label | translate }} {{ "IsInValid" | translate }}
   </mat-error>
 </mat-form-field>

@@ -4,6 +4,7 @@ import {
   HttpConfigInterceptor,
   HttpErrorInterceptor,
 } from './interceptors/index';
+import { RolePipe } from './pipe';
 import { ApiHelperService, CoreService } from './services/index';
 import { NotificationService } from './services/notification.service';
 
@@ -30,7 +31,7 @@ import { NotificationService } from './services/notification.service';
       provide: NotificationService,
     },
   ],
-  exports: [],
-  declarations: [],
+  exports: [RolePipe],
+  declarations: [RolePipe],
 })
 export class CoreModule {}
