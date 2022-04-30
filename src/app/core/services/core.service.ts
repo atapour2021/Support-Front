@@ -2,8 +2,7 @@ import { Injectable } from '@angular/core';
 import * as jalaliMoment from 'jalali-moment';
 import * as moment from 'moment';
 import { Toaster } from 'ngx-toast-notifications';
-import { Observable, Subject } from 'rxjs';
-import { environment } from 'src/environments/environment';
+import { Subject } from 'rxjs';
 import { ApiHelperService } from '../services';
 
 @Injectable({

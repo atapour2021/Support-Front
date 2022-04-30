@@ -9,11 +9,10 @@
   <button id="layoutBtn" class="d-none" (click)="updateLayout()"></button>
   <button
     mat-icon-button
-    matBadge="2"
+    [matBadge]="unVisibleNotificationsCount"
     matBadgePosition="before"
     matBadgeColor="accent"
-    (click)="openNotifList()"
-  >
+    (click)="openNotifList()">
     <i class="fa fa-bell"></i>
   </button>
   <button class="btn__profile" [matMenuTriggerFor]="menu" mat-icon-button>
@@ -23,18 +22,17 @@
       [src]="baseUrl + '/' + profile.avatar"
       class="img"
       width="30"
-      height="30"
-    />
+      height="30" />
     <span class="d-none d-sm-inline"> {{ profile.fullName }} </span>
   </button>
   <mat-menu #menu="matMenu">
-    <button *ngIf="completeRegister" mat-menu-item (click)="moveToProfile()">
+    <button mat-menu-item (click)="moveToProfile()">
       <i class="fas fa-address-card"></i>
-      {{ "Profile" | translate }}
+      {{ 'Profile' | translate }}
     </button>
     <button mat-menu-item (click)="onLogOutClick()">
       <i class="fas fa-sign-out-alt"></i>
-      {{ "LogOut" | translate }}
+      {{ 'LogOut' | translate }}
     </button>
   </mat-menu>
 </mat-toolbar>
@@ -45,22 +43,19 @@
       <img
         *ngIf="!profile.avatar"
         class="logo__nav"
-        src="../../../assets/img/xuser.jpg"
-      />
+        src="../../../assets/img/xuser.jpg" />
       <img
         *ngIf="profile.avatar"
         class="avatar"
-        [src]="baseUrl + '/' + profile.avatar"
-      />
+        [src]="baseUrl + '/' + profile.avatar" />
 
       <span *ngIf="profile">{{ profile.fullName }}</span>
-      <span *ngIf="!profile">{{ "UserName" | translate }}</span>
+      <span *ngIf="!profile">{{ 'UserName' | translate }}</span>
     </div>
     <mat-nav-list>
       <app-menu-list-item
         *ngFor="let item of navItems"
-        [item]="item"
-      ></app-menu-list-item>
+        [item]="item"></app-menu-list-item>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>

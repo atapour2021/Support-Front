@@ -28,6 +28,16 @@ export class NotificationService {
       });
     }
   }
+
+  showRegisterNotification(massage: string): void {
+    this._notificationService.open({
+      caption: 'پیام سیستمی',
+      text: `${massage}`,
+      type: 'primary',
+      position: 'bottom-center',
+      duration: 5000,
+    });
+  }
 }
 
 export interface INotification {

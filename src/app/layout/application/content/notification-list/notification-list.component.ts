@@ -4,19 +4,7 @@ import {
   MAT_BOTTOM_SHEET_DATA,
 } from '@angular/material/bottom-sheet';
 import { TranslateService } from '@ngx-translate/core';
-import { environment } from 'src/environments/environment';
-
-export interface INotificationListDto {
-  id: number | undefined;
-  counter: number | undefined;
-  changeStateDateTime: string | undefined;
-  createDateTime: string | undefined;
-  description: string | undefined;
-  fromUserId: string | undefined;
-  state: number | undefined;
-  timeAgo: string | undefined;
-  title: string | undefined;
-}
+import { NotificationDto } from 'src/app/modules/notification/dto/notification.dto';
 
 @Component({
   selector: 'app-notification-list',
@@ -26,15 +14,13 @@ export interface INotificationListDto {
 export class NotificationListComponent implements OnInit {
   baseImagePath!: string;
   image!: string;
-  notifications: INotificationListDto[] = [];
+  notifications: NotificationDto[] = [];
 
   constructor(
     public translate: TranslateService,
     @Inject(MAT_BOTTOM_SHEET_DATA) public data: any,
     private _bottomSheetRef: MatBottomSheetRef<NotificationListComponent>
-  ) {
-    // this.baseImagePath = `${environment.fileUploaderUrl_}/Download`;
-  }
+  ) {}
 
   ngOnInit(): void {
     this.notifications = this.data.notifications;

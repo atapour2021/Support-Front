@@ -18,7 +18,9 @@ import {
 } from './layout';
 import { NavService } from './layout/application/menu-list-item/nav.service';
 import { SharedModule } from './shared/shared.module';
+import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 
+const config: SocketIoConfig = { url: `${environment.baseUrl}`, options: {} };
 const routes: Routes = [];
 
 @NgModule({
@@ -43,6 +45,7 @@ const routes: Routes = [];
     BreadcrumbModule,
     CoreModule,
     AuthModule,
+    SocketIoModule.forRoot(config),
   ],
   providers: [
     {

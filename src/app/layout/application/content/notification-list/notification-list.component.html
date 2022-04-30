@@ -16,7 +16,7 @@
   <div style="max-height: 230px">
     <a
       href="javascript:0;"
-      *ngFor="let notification of notifications | slice: 0:2; let i = index"
+      *ngFor="let notification of notifications | slice: 0:3; let i = index"
     >
       <div class="row notification__item my-4">
         <div class="col-2">
@@ -30,7 +30,7 @@
               {{ notification.title }}
             </span>
             <p class="col-6 d-flex justify-content-end text-primary">
-              {{ notification.timeAgo }}
+              {{ notification.createDate! | jalalidateconvertor }}
             </p>
           </div>
           <p class="col-12">

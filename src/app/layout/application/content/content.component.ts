@@ -12,18 +12,10 @@ import { NavItem } from '../menu-list-item/nav-item';
 import { NavService } from '../menu-list-item/nav.service';
 import { NotificationListComponent } from './notification-list/notification-list.component';
 import { environment } from 'src/environments/environment';
-
-export interface INotificationList {
-  id: number | undefined;
-  counter: number | undefined;
-  changeStateDateTime: string | undefined;
-  createDateTime: string | undefined;
-  description: string | undefined;
-  fromUserId: string | undefined;
-  state: number | undefined;
-  timeAgo: string | undefined;
-  title: string | undefined;
-}
+import { RealtimeService } from 'src/app/core/services';
+import { NotificationsService } from 'src/app/modules/notification/service/notification.service';
+import { NotificationDto } from 'src/app/modules/notification/dto/notification.dto';
+import { NotificationService } from 'src/app/core/services';
 
 @Component({
   selector: 'app-content',
@@ -31,42 +23,16 @@ export interface INotificationList {
   styleUrls: ['./content.component.scss'],
 })
 export class ContentComponent implements OnInit, AfterViewInit {
-  showFiller = false;
-  completeRegister = true;
   navItems: NavItem[] = [];
-  notificationList: INotificationList[] = [
-    {
-      id: 1,
-      counter: 1,
-      changeStateDateTime: '1400/02/10',
-      createDateTime: '1400/02/10',
-      description: 'تجهیز شما فعال شد.',
-      fromUserId: undefined,
-      state: 0,
-      timeAgo: '3 روز پیش',
-      title: 'فعال سازی',
-    },
-    {
-      id: 1,
-      counter: 1,
-      changeStateDateTime: '1400/02/10',
-      createDateTime: '1400/02/10',
-      description: 'پیغام ادمین توضیحات ....',
-      fromUserId: undefined,
-      state: 1,
-      timeAgo: '2 ساعت پیش',
-      title: 'پیغام ادمین',
-    },
-  ];
   count!: number;
-
   profileId: string | undefined;
   profile = new ProfileDto();
   baseUrl: string | undefined;
-
   @ViewChild(MatSidenav)
   sidenav!: MatSidenav;
   _observer!: BreakpointObserver;
+  notifications: NotificationDto[] = [];
+  unVisibleNotificationsCount!: number;
 
   constructor(
     public translate: TranslateService,
@@ -75,7 +41,10 @@ export class ContentComponent implements OnInit, AfterViewInit {
     private router: Router,
     private authService: AuthService,
     private navService: NavService,
-    private profileService: ProfileService
+    private profileService: ProfileService,
+    private realtimeService: RealtimeService,
+    private notificationsService: NotificationsService,
+    private notifService: NotificationService
   ) {
     translate.addLangs(['en', 'persian']);
     translate.setDefaultLang('persian');
@@ -84,24 +53,23 @@ export class ContentComponent implements OnInit, AfterViewInit {
 
     this.profileId = JSON.parse(localStorage.getItem('user')!).profileId;
     this.baseUrl = `${environment.baseUrl}/file-uploader`;
+
+    this.realtimeService.receiveNotification().subscribe((message: string) => {
+      this.notifService.showRegisterNotification(message);
+      this.getNotifications();
+    });
   }
 
   ngOnInit(): void {
     this.setMenuItem();
     this.getProfile(this.profileId!);
+    this.getNotifications();
   }
-
-  getProfile(id: string): void {
-    this.profileService.getProfile(id).subscribe((response_: any) => {
-      this.profile.init(response_);
-    });
-  }
-
   ngAfterViewInit(): void {
     this._observer
       .observe(['(max-width: 800px)'])
       .pipe(delay(1))
-      .subscribe((res) => {
+      .subscribe(res => {
         if (res.matches) {
           this.sidenav.mode = 'over';
           this.sidenav.close();
@@ -112,9 +80,22 @@ export class ContentComponent implements OnInit, AfterViewInit {
       });
   }
 
-  setMenuItem(): void {
-    this.navService.getMenu().subscribe((menu: any) => {
-      this.navItems = menu.data;
+  getProfile(id: string): void {
+    this.profileService.getProfile(id).subscribe((response_: any) => {
+      this.profile.init(response_);
+    });
+  }
+  getNotifications(): void {
+    this.notificationsService.getNotifications().subscribe((response_: any) => {
+      if (!response_.success) return;
+      this.notifications = response_.listData;
+      this.getUnVisibleNotifications(response_.listData);
+    });
+  }
+  getUnVisibleNotifications(notifications: NotificationDto[]): void {
+    this.unVisibleNotificationsCount = 0;
+    notifications.forEach((notification: NotificationDto) => {
+      if (!notification.isVisited) this.unVisibleNotificationsCount++;
     });
   }
 
@@ -122,7 +103,11 @@ export class ContentComponent implements OnInit, AfterViewInit {
     this.getProfile(this.profileId!);
   }
 
-  getCount(id: string) {}
+  setMenuItem(): void {
+    this.navService.getMenu().subscribe((menu: any) => {
+      this.navItems = menu.data;
+    });
+  }
 
   onLogOutClick(): void {
     this.authService.logout();
@@ -130,12 +115,9 @@ export class ContentComponent implements OnInit, AfterViewInit {
   openNotifList(): void {
     this._bottomSheet.open(NotificationListComponent, {
       data: {
-        notifications: this.notificationList,
+        notifications: this.notifications,
       },
     });
-  }
-  openShoppingCart(): void {
-    this.router.navigate(['app/products/shoppingcart']);
   }
   moveToProfile(): void {
     this.router.navigate(['app/profile']);

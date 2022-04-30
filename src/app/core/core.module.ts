@@ -4,8 +4,12 @@ import {
   HttpConfigInterceptor,
   HttpErrorInterceptor,
 } from './interceptors/index';
-import { RolePipe } from './pipe';
-import { ApiHelperService, CoreService } from './services/index';
+import { jalalidateconvertor, RolePipe } from './pipe';
+import {
+  ApiHelperService,
+  CoreService,
+  RealtimeService,
+} from './services/index';
 import { NotificationService } from './services/notification.service';
 
 @NgModule({
@@ -30,8 +34,11 @@ import { NotificationService } from './services/notification.service';
     {
       provide: NotificationService,
     },
+    {
+      provide: RealtimeService,
+    },
   ],
-  exports: [RolePipe],
-  declarations: [RolePipe],
+  exports: [RolePipe, jalalidateconvertor],
+  declarations: [RolePipe, jalalidateconvertor],
 })
 export class CoreModule {}

@@ -20,5 +20,7 @@
   "MobileNumber": "شماره موبایل",
   "Email": "ایمیل",
   "Description": "توضیحات",
-  "Age": "سن"
+  "Age": "سن",
+  "SeeAll": "مشاهده همه",
+  "Notifications": "اعلان ها"
 }
