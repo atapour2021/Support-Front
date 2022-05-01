@@ -20,3 +20,17 @@ export interface INotificationDto {
   creator: string | undefined;
   isVisited: boolean | undefined;
 }
+
+export class NotificationLisArgDto implements INotificationLisArgDto {
+  page: number | undefined;
+  pageSize: number | undefined;
+
+  init(data: INotificationLisArgDto): void {
+    this.page = data['page'];
+    this.pageSize = data['pageSize'];
+  }
+}
+export interface INotificationLisArgDto {
+  page: number | undefined;
+  pageSize: number | undefined;
+}

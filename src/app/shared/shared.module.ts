@@ -9,10 +9,14 @@ import { MaterialModule } from './material.module';
 import {
   ComboboxComponent,
   DatePickerComponent,
+  GridComponent,
   NumericTextComponent,
   TextAreaInputComponent,
   TextComponent,
 } from './components';
+import { NgxDatatableModule } from '@swimlane/ngx-datatable';
+import { MockServerResultsService } from './components/grid/mock.server.results.service';
+
 
 @NgModule({
   declarations: [
@@ -21,6 +25,7 @@ import {
     NumericTextComponent,
     TextAreaInputComponent,
     TextComponent,
+    GridComponent,
   ],
   imports: [
     CommonModule,
@@ -35,6 +40,7 @@ import {
       },
     }),
     MaterialModule,
+    NgxDatatableModule
   ],
   exports: [
     CommonModule,
@@ -45,8 +51,9 @@ import {
     NumericTextComponent,
     TextAreaInputComponent,
     TextComponent,
+    GridComponent,
   ],
-  providers: [],
+  providers: [MockServerResultsService],
 })
 export class SharedModule {}
 

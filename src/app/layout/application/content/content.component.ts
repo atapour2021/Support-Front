@@ -14,7 +14,10 @@ import { NotificationListComponent } from './notification-list/notification-list
 import { environment } from 'src/environments/environment';
 import { RealtimeService } from 'src/app/core/services';
 import { NotificationsService } from 'src/app/modules/notification/service/notification.service';
-import { NotificationDto } from 'src/app/modules/notification/dto/notification.dto';
+import {
+  NotificationDto,
+  NotificationLisArgDto,
+} from 'src/app/modules/notification/dto/notification.dto';
 import { NotificationService } from 'src/app/core/services';
 
 @Component({
@@ -86,11 +89,18 @@ export class ContentComponent implements OnInit, AfterViewInit {
     });
   }
   getNotifications(): void {
-    this.notificationsService.getNotifications().subscribe((response_: any) => {
-      if (!response_.success) return;
-      this.notifications = response_.listData;
-      this.getUnVisibleNotifications(response_.listData);
+    const body = new NotificationLisArgDto();
+    body.init({
+      page: 1,
+      pageSize: 10,
     });
+    this.notificationsService
+      .getNotifications(body)
+      .subscribe((response_: any) => {
+        if (!response_.success) return;
+        this.notifications = response_.listData;
+        this.getUnVisibleNotifications(response_.listData);
+      });
   }
   getUnVisibleNotifications(notifications: NotificationDto[]): void {
     this.unVisibleNotificationsCount = 0;
