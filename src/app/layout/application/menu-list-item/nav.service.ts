@@ -24,8 +24,8 @@ export class NavService {
     this.baseUrl = environment.baseUrl;
   }
 
-  getMenu(): Observable<NavItem> {
-    const url = `${this.baseUrl}/Menu`;
+  getMenu(role?: string): Observable<NavItem> {
+    const url = `${this.baseUrl}/Menu/${role}`;
     return this.apiHelperService.get<NavItem>(url);
   }
 }

@@ -5,6 +5,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { CoreModule } from '../core/core.module';
 import {
   CardListComponent,
   ComboboxComponent,
@@ -38,6 +39,7 @@ import { MaterialModule } from './material.module';
       },
     }),
     MaterialModule,
+    CoreModule
   ],
   exports: [
     CommonModule,

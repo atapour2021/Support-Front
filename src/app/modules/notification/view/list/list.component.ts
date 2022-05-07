@@ -71,10 +71,12 @@ export class ListComponent implements OnInit {
           {
             name: 'IsVisited',
             value: item.isVisited,
+            hasPipe: true,
           },
           {
             name: 'CreateDate',
             value: item.createDate,
+            hasPipe: true,
           },
           {
             name: 'Description',

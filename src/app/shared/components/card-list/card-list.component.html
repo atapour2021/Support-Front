@@ -17,10 +17,10 @@
       <div class="row my-2">
         <mat-card-content *ngFor="let data of card.contents" class="col-md-6">
           {{ data.name | translate }}:
-          <span class="text-primary">
+          <span class="text-primary" *ngIf="!data.hasPipe">
             <span class="text-primary">{{ data.value }}</span>
           </span>
-          <!-- <span *ngIf="data.name.includes('Date')">
+          <span *ngIf="data.name.includes('Date')">
             <span class="text-primary">{{
               data.value | jalalidateconvertor
             }}</span>
@@ -29,7 +29,12 @@
             <span class="text-primary">{{
               data.value | jalalidateconvertor
             }}</span>
-          </span> -->
+          </span>
+          <span *ngIf="data.name === 'IsVisited'">
+            <span class="text-primary">{{
+              data.value | translateBoolean: "is"
+            }}</span>
+          </span>
 
           <!-- <mat-slide-toggle
             *ngIf="data.isToggle"

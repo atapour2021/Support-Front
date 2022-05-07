@@ -64,7 +64,8 @@ export class ContentComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void {
-    this.setMenuItem();
+    const role = JSON.parse(localStorage.getItem('user')!).role;
+    this.setMenuItem(role);
     this.getProfile(this.profileId!);
     this.getNotifications();
   }
@@ -113,8 +114,8 @@ export class ContentComponent implements OnInit, AfterViewInit {
     this.getProfile(this.profileId!);
   }
 
-  setMenuItem(): void {
-    this.navService.getMenu().subscribe((menu: any) => {
+  setMenuItem(role: string): void {
+    this.navService.getMenu(role).subscribe((menu: any) => {
       this.navItems = menu.data;
     });
   }

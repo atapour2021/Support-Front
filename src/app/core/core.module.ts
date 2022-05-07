@@ -4,7 +4,7 @@ import {
   HttpConfigInterceptor,
   HttpErrorInterceptor,
 } from './interceptors/index';
-import { jalalidateconvertor, RolePipe } from './pipe';
+import { jalalidateconvertor, RolePipe, TranslateBooleanPipe } from './pipe';
 import {
   ApiHelperService,
   CoreService,
@@ -38,7 +38,7 @@ import { NotificationService } from './services/notification.service';
       provide: RealtimeService,
     },
   ],
-  exports: [RolePipe, jalalidateconvertor],
-  declarations: [RolePipe, jalalidateconvertor],
+  exports: [RolePipe, jalalidateconvertor, TranslateBooleanPipe],
+  declarations: [RolePipe, jalalidateconvertor, TranslateBooleanPipe],
 })
 export class CoreModule {}
