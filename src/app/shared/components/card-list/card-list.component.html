@@ -32,8 +32,11 @@
           </span>
           <span *ngIf="data.name === 'IsVisited'">
             <span class="text-primary">{{
-              data.value | translateBoolean: "is"
+              data.value | translateBoolean: 'is'
             }}</span>
+          </span>
+          <span *ngIf="data.name === 'Role'">
+            <span class="text-primary">{{ data.value | rolePipe }}</span>
           </span>
 
           <!-- <mat-slide-toggle
