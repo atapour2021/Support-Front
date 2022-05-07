@@ -21,9 +21,11 @@ export class ListComponent implements OnInit {
   UserListArg = new UserLisArgDto();
   userList: UserDto[] = [];
   loading = false;
-  pageSize = 10;
+  pageSize = 6;
   page = 1;
   cardsSetting: ICardSetting[] = [];
+  totalElement!: number;
+  showPagination = false;
 
   constructor(
     public translate: TranslateService,
@@ -38,8 +40,8 @@ export class ListComponent implements OnInit {
 
   ngOnInit(): void {
     this.UserListArg.init({
-      page: 1,
-      pageSize: 10,
+      page: this.page,
+      pageSize: this.pageSize,
     });
     this.getUserList(this.UserListArg);
   }
@@ -49,6 +51,8 @@ export class ListComponent implements OnInit {
       this.loading = false;
       if (!response.success) return;
       this.userList = response.listData;
+      this.totalElement = response.totalItem;
+      this.showPagination = true;
       this.fillCardSetting(response.listData);
     });
   }
@@ -158,5 +162,14 @@ export class ListComponent implements OnInit {
     const user: UserDto = this.userList.find(e => e._id === id)!;
     if (!user) return undefined;
     return user.fullName;
+  }
+
+  onPageChange(data: any): void {
+    this.UserListArg.init({
+      page: data.page,
+      pageSize: data.pageSize,
+    });
+
+    this.getUserList(this.UserListArg);
   }
 }

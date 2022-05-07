@@ -1,0 +1,12 @@
+<div class="row justify-content-center">
+  <button [disabled]="page == 1" mat-mini-fab (click)="onPrevPageClick()">
+    <i class="fa fa-angle-right"></i>
+  </button>
+  <button disabled mat-mini-fab class="mx-2">{{ page }}</button>
+  <button
+    [disabled]="page >= totalPages"
+    mat-mini-fab
+    (click)="onNextPageClick()">
+    <i class="fa fa-angle-left"></i>
+  </button>
+</div>

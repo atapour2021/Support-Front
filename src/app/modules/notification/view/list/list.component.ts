@@ -28,6 +28,9 @@ export class ListComponent implements OnInit {
   page = 1;
   cardsSetting: ICardSetting[] = [];
 
+  totalElement!: number;
+  showPagination = false;
+
   constructor(
     public translate: TranslateService,
     private _notificationsService: NotificationsService,
@@ -54,6 +57,8 @@ export class ListComponent implements OnInit {
         this.loading = false;
         if (!response.success) return;
         this.notificationList = response.listData;
+        this.totalElement = response.totalItem;
+        this.showPagination = true;
         this.fillCardSetting(response.listData);
       });
   }
@@ -172,5 +177,14 @@ export class ListComponent implements OnInit {
     )!;
     if (!Notification) return undefined;
     return `${Notification.title!} ${Notification.creator!}`;
+  }
+
+  onPageChange(data: any): void {
+    this.notificationListArg.init({
+      page: data.page,
+      pageSize: data.pageSize,
+    });
+
+    this.getNotificationList(this.notificationListArg);
   }
 }

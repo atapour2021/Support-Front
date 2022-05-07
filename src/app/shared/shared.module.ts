@@ -11,6 +11,7 @@ import {
   ComboboxComponent,
   DatePickerComponent,
   NumericTextComponent,
+  PaginationComponent,
   TextAreaInputComponent,
   TextComponent,
 } from './components';
@@ -25,6 +26,7 @@ import { MaterialModule } from './material.module';
     TextAreaInputComponent,
     TextComponent,
     CardListComponent,
+    PaginationComponent,
   ],
   imports: [
     CommonModule,
@@ -39,7 +41,7 @@ import { MaterialModule } from './material.module';
       },
     }),
     MaterialModule,
-    CoreModule
+    CoreModule,
   ],
   exports: [
     CommonModule,
@@ -51,6 +53,7 @@ import { MaterialModule } from './material.module';
     TextAreaInputComponent,
     TextComponent,
     CardListComponent,
+    PaginationComponent,
   ],
   providers: [CardService],
 })
