@@ -1,0 +1,59 @@
+<div class="row" *ngIf="cardsSetting.length > 0; else noData">
+  <div *ngFor="let card of cardsSetting" class="col-md-6 col-sm-12 my-1">
+    <mat-card class="card__setting">
+      <div class="d-none" id="selection" #selectionId>
+        {{ card.selectionValue }}
+      </div>
+      <mat-card-title-group class="row">
+        <div class="row col-12">
+          <mat-card-title class="col-md-5 d-none d-sm-block">
+            {{ card.title | translate }}
+          </mat-card-title>
+          <mat-card-title class="col-md-7 col-sm-12 d-flex justify-content-end">
+            <ng-container *ngTemplateOutlet="currentTemplate"> </ng-container>
+          </mat-card-title>
+        </div>
+      </mat-card-title-group>
+      <div class="row my-2">
+        <mat-card-content *ngFor="let data of card.contents" class="col-md-6">
+          {{ data.name | translate }}:
+          <span class="text-primary">
+            <span class="text-primary">{{ data.value }}</span>
+          </span>
+          <!-- <span *ngIf="data.name.includes('Date')">
+            <span class="text-primary">{{
+              data.value | jalalidateconvertor
+            }}</span>
+          </span>
+          <span *ngIf="data.name.includes('Time')">
+            <span class="text-primary">{{
+              data.value | jalalidateconvertor
+            }}</span>
+          </span> -->
+
+          <!-- <mat-slide-toggle
+            *ngIf="data.isToggle"
+            [(ngModel)]="data.value"
+            (click)="onChangeToggleClick($event, data)"
+            class="mx-2"
+          >
+          </mat-slide-toggle> -->
+        </mat-card-content>
+      </div>
+    </mat-card>
+  </div>
+</div>
+<ng-template #noData>
+  <div class="row v__center">
+    <mat-card *ngIf="!loading" class="col-md-4 col-sm-12">
+      <mat-card-content class="text-center">
+        {{ 'NoDataTextForShow' | translate }}
+      </mat-card-content>
+    </mat-card>
+  </div>
+  <div class="v__center">
+    <div *ngIf="loading" class="spinner-grow loading" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
+  </div>
+</ng-template>

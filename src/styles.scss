@@ -1,14 +1,11 @@
 @import '~bootstrap/dist/css/bootstrap.min.css';
-@import "./assets/fontawesome/css/all.css";
-@import "./assets/farsi-fonts-styles/secondary-iran-yekan.css";
-@import "./assets/farsi-fonts-styles/primary-iran-yekan.css";
-@import "~@angular/material/theming";
-@import '~@swimlane/ngx-datatable/index.css';
-@import '~@swimlane/ngx-datatable/themes/material.scss';
-@import '~@swimlane/ngx-datatable/assets/icons.css';
+@import './assets/fontawesome/css/all.css';
+@import './assets/farsi-fonts-styles/secondary-iran-yekan.css';
+@import './assets/farsi-fonts-styles/primary-iran-yekan.css';
+@import '~@angular/material/theming';
 
 $custom-typography: mat-typography-config(
-  $font-family: "primary-font",
+  $font-family: 'primary-font',
 );
 @include mat-core($custom-typography);
 

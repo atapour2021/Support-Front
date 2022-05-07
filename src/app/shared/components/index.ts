@@ -1,2 +1,2 @@
 export * from './input';
-export * from './grid/grid.component';
+export * from './card-list/card-list.component';

@@ -1,4 +1,5 @@
 export class NotificationDto implements INotificationDto {
+  _id: string | undefined;
   title: string | undefined;
   description: string | undefined;
   createDate: string | undefined;
@@ -14,6 +15,7 @@ export class NotificationDto implements INotificationDto {
   }
 }
 export interface INotificationDto {
+  _id: string | undefined;
   title: string | undefined;
   description: string | undefined;
   createDate: string | undefined;

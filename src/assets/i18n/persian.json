@@ -22,5 +22,8 @@
   "Description": "توضیحات",
   "Age": "سن",
   "SeeAll": "مشاهده همه",
-  "Notifications": "اعلان ها"
+  "Notifications": "اعلان ها",
+  "IsVisited": "دیده شده",
+  "Creator": "ایجاد کننده",
+  "CreateDate": "تاریخ ایجاد پیام"
 }

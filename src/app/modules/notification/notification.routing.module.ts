@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-// import { NotificationComponent } from './view/Notification/Notification.component';
+import { ListComponent } from './view/list/list.component';
 
 const routes: Routes = [
   {
     path: '',
-    // component: NotificationComponent,
+    component: ListComponent,
     data: { breadcrumb: 'اعلان ها' },
   },
 ];

@@ -9,6 +9,7 @@ import { Injectable } from '@angular/core';
 import { Toaster } from 'ngx-toast-notifications';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
+import { AuthService } from 'src/app/auth/service/auth.service';
 // import { AuthService } from 'src/app/auth/auth.service';
 
 @Injectable({
@@ -17,7 +18,7 @@ import { catchError } from 'rxjs/operators';
 export class HttpErrorInterceptor implements HttpInterceptor {
   constructor(
     private _notificationService: Toaster,
-    // private _authService: AuthService
+    private _authService: AuthService
   ) {}
 
   intercept(
@@ -39,7 +40,7 @@ export class HttpErrorInterceptor implements HttpInterceptor {
   handleServerError(error: HttpErrorResponse): void {
     if (error.status == 400) this.handleMessage('درخواست شما نامعتبر میباشد');
     else if (error.status == 401) {
-      // this._authService.logout();
+      this._authService.logout();
       this.handleMessage('لطفا مجددا وارد حساب کاربری خود شوید');
     } else if (error.status == 403)
       this.handleMessage('شما به این بخش دسترسی ندارید');

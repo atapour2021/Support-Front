@@ -1,0 +1,26 @@
+<div class="left__side">
+  <!-- <button
+    mat-fab
+    class="create__btn"
+    color="primary"
+    (click)="addNotification()">
+    <i class="fas fa-plus fa-2x"></i>
+  </button> -->
+  <!-- <button mat-fab class="search__btn" color="primary" (click)="onSearchClick()">
+    <i class="fas fa-search fa-2x"></i>
+  </button> -->
+</div>
+<div class="row m-3">
+  <ng-template #cardButtons>
+    <!-- <button class="btn" (click)="editNotification($event)">
+      <i class="fas fa-edit"></i>
+    </button> -->
+    <button class="btn" (click)="removeNotification($event)">
+      <i class="fas fa-trash"></i>
+    </button>
+  </ng-template>
+  <app-card-list
+    [cardsSetting]="cardsSetting"
+    [initialTemplate]="cardButtons"
+    [loading]="loading"></app-card-list>
+</div>

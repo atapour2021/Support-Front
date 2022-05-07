@@ -5,18 +5,16 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-import { MaterialModule } from './material.module';
 import {
+  CardListComponent,
   ComboboxComponent,
   DatePickerComponent,
-  GridComponent,
   NumericTextComponent,
   TextAreaInputComponent,
   TextComponent,
 } from './components';
-import { NgxDatatableModule } from '@swimlane/ngx-datatable';
-import { MockServerResultsService } from './components/grid/mock.server.results.service';
-
+import { CardService } from './components/card-list/card-list.service';
+import { MaterialModule } from './material.module';
 
 @NgModule({
   declarations: [
@@ -25,7 +23,7 @@ import { MockServerResultsService } from './components/grid/mock.server.results.
     NumericTextComponent,
     TextAreaInputComponent,
     TextComponent,
-    GridComponent,
+    CardListComponent,
   ],
   imports: [
     CommonModule,
@@ -40,7 +38,6 @@ import { MockServerResultsService } from './components/grid/mock.server.results.
       },
     }),
     MaterialModule,
-    NgxDatatableModule
   ],
   exports: [
     CommonModule,
@@ -51,9 +48,9 @@ import { MockServerResultsService } from './components/grid/mock.server.results.
     NumericTextComponent,
     TextAreaInputComponent,
     TextComponent,
-    GridComponent,
+    CardListComponent,
   ],
-  providers: [MockServerResultsService],
+  providers: [CardService],
 })
 export class SharedModule {}
 

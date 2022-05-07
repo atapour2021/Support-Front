@@ -1,0 +1,19 @@
+.left__side {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  height: 100%;
+  width: 50px;
+  left: 0;
+  z-index: 1000;
+
+  .create__btn {
+    margin-bottom: 120px;
+    position: fixed;
+  }
+
+  .search__btn {
+    position: fixed;
+    background-color: crimson;
+  }
+}
