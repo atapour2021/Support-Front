@@ -21,6 +21,11 @@ export const CONTENT_ROUTES: Routes = [
     path: 'users',
     loadChildren: () => import('../../modules').then(m => m.UserModule),
   },
+  {
+    path: 'advertises',
+    loadChildren: () => import('../../modules').then(m => m.AdvertiseModule),
+  },
+
 
   {
     path: '**',
