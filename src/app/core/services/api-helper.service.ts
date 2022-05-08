@@ -23,14 +23,19 @@ export interface IParam {
 export class ApiHelperService {
   private http: HttpClient;
   private baseUrl!: string;
+  private userId!: string;
 
   constructor(@Inject(HttpClient) http: HttpClient) {
     this.http = http;
     this.baseUrl = environment.baseUrl;
   }
 
-  get<T>(url: string): Observable<T> {
-    let url_ = url;
+  get<T>(url: string, hasUserId?: boolean): Observable<T> {
+    const user = JSON.parse(localStorage.getItem('user')!);
+    if (user) this.userId = user.id;
+    let url_: string;
+    if (hasUserId) url_ = `${url}/${this.userId}`;
+    else url_ = url;
 
     return this.http
       .request('get', url_)
@@ -54,7 +59,7 @@ export class ApiHelperService {
 
   private removeNullValuesFromQueryParams(params: HttpParams): HttpParams {
     const paramsKeysAux = params.keys();
-    paramsKeysAux.forEach((key) => {
+    paramsKeysAux.forEach(key => {
       const value = params.get(key);
       if (value === null || value === undefined || value === '') {
         params['map'].delete(key);

@@ -58,6 +58,7 @@ export class ContentComponent implements OnInit, AfterViewInit {
     this.baseUrl = `${environment.baseUrl}/file-uploader`;
 
     this.realtimeService.receiveNotification().subscribe((message: string) => {
+      if (!this.authService.checkAuth()) return;
       this.notifService.showRegisterNotification(message);
       this.getNotifications();
     });

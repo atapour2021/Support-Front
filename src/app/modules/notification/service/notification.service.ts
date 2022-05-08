@@ -18,7 +18,7 @@ export class NotificationsService {
     let url = `${this.baseUrl}/Notifications`;
     if (body.page) url += `/${body.page}`;
     if (body.pageSize) url += `/${body.pageSize}`;
-    return this._apiService.get<any>(url);
+    return this._apiService.get<any>(url, true);
   }
 
   removeNotification(id: string): Observable<any> {

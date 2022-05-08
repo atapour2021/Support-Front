@@ -1,4 +1,4 @@
-<div class="row justify-content-center">
+<div *ngIf="totalElement > 0" class="row justify-content-center">
   <button [disabled]="page == 1" mat-mini-fab (click)="onPrevPageClick()">
     <i class="fa fa-angle-right"></i>
   </button>
