@@ -10,7 +10,12 @@ import { ListComponent } from './view/list/list.component';
 import { UpdateComponent } from './view/update/update.component';
 
 @NgModule({
-  declarations: [ListComponent, CreateComponent, UpdateComponent, AdvertiseCardComponent],
+  declarations: [
+    ListComponent,
+    CreateComponent,
+    UpdateComponent,
+    AdvertiseCardComponent,
+  ],
   imports: [
     CoreModule,
     AdvertiseRoutingModule,

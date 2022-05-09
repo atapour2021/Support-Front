@@ -1,0 +1,40 @@
+.UploadFile {
+  width: 90%;
+  margin-left: 10px;
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.uploader-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.file-container {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-top: 5px;
+}
+
+.remove-file {
+  cursor: pointer;
+  margin: 0 10px;
+}
+
+img {
+  width: 40px;
+  height: 40px;
+}
+
+.image {
+  display: flex;
+}
+
+.file__error {
+  height: 70px;
+}

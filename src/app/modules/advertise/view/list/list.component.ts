@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { TranslateService } from '@ngx-translate/core';
 import { NotificationService } from 'src/app/core/services';
-import { CardService } from 'src/app/shared/components/card-list/card-list.service';
 import swal from 'sweetalert2';
 import { AdvertiseDto, AdvertiseLisArgDto } from '../../dto/advertise.dto';
 import { AdvertisesService } from '../../service/advertise.service';
@@ -28,7 +27,6 @@ export class ListComponent implements OnInit {
     public translate: TranslateService,
     private _advertisesService: AdvertisesService,
     public dialog: MatDialog,
-    private _cardService: CardService,
     private notificationService: NotificationService
   ) {
     translate.addLangs(['en', 'persian']);
@@ -59,16 +57,15 @@ export class ListComponent implements OnInit {
       disableClose: true,
     });
 
-    // dialogRef.componentInstance.onSave.subscribe(result => {
-    //   if (!result) return;
-    //   if (result.success) {
-    //     dialogRef.close();
-    //     this.getAdvertiseList(this.AdvertiseListArg);
-    //   }
-    // });
+    dialogRef.componentInstance.onSave.subscribe(result => {
+      if (!result) return;
+      if (result.success) {
+        dialogRef.close();
+        this.getAdvertiseList(this.advertiseListArg);
+      }
+    });
   }
-  editAdvertise(event: any) {
-    const id = this._cardService.getSelevtion(event);
+  editAdvertise(id: string) {
     const dialogRef = this.dialog.open(UpdateComponent, {
       width: '450px',
       disableClose: true,
@@ -78,16 +75,15 @@ export class ListComponent implements OnInit {
       },
     });
 
-    // dialogRef.componentInstance.onSave.subscribe(result => {
-    //   if (!result) return;
-    //   if (result.success) {
-    //     dialogRef.close();
-    //     this.getAdvertiseList(this.AdvertiseListArg);
-    //   }
-    // });
+    dialogRef.componentInstance.onSave.subscribe(result => {
+      if (!result) return;
+      if (result.success) {
+        dialogRef.close();
+        this.getAdvertiseList(this.advertiseListArg);
+      }
+    });
   }
-  removeAdvertise(event: any): void {
-    const id = this._cardService.getSelevtion(event);
+  removeAdvertise(id: string): void {
     swal
       .fire({
         title: 'حذف تبلیغات ',
@@ -108,6 +104,7 @@ export class ListComponent implements OnInit {
         }
       });
   }
+
   // onSearchClick(): void {
   //   const dialogRef = this.dialog.open(AdvertiseFilterComponent, {
   //     width: '300px',

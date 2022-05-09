@@ -1,0 +1,39 @@
+<div class="form-group col-12">
+  <div class="input-group UploadFile col-12">
+    <div class="uploader-container">
+      <input
+        readonly
+        type="text"
+        [placeholder]="Label | translate"
+        class="form-control UploadFile"
+        (click)="onChooseFileClick()" />
+      <div class="input-group-prepend" (click)="onChooseFileClick()">
+        <span class="input-group-text">
+          <i class="fas fa-file-upload"></i>
+        </span>
+      </div>
+      <input
+        class="d-none"
+        id="file"
+        type="file"
+        (change)="uploadContent($event)" />
+    </div>
+    <div class="file-container">
+      <img *ngIf="isImage" [src]="fileSrc" />
+      <i *ngIf="!isImage" [title]="file.name" class="fas fa-file fa-2x"></i>
+      <i
+        class="fa fa-trash remove-file"
+        title="{{ 'RemoveFile' | translate }}"
+        (click)="removeFile()"></i>
+      <div class="row file__error">
+        <span *ngIf="!fileTypeValid" class="text-danger col-12">
+          {{ 'InValideFileType' | translate }} ,
+          {{ 'ValidFileTypeIS' | translate }} {{ fileTypeLimit }}
+        </span>
+        <span *ngIf="!fileSizeValid" class="text-primary col-12"
+          >{{ 'ValideSize' | translate }} {{ fileMaxSize }}MB</span
+        >
+      </div>
+    </div>
+  </div>
+</div>

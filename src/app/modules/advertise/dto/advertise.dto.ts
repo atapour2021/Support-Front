@@ -4,7 +4,7 @@ export class AdvertiseDto implements IAdvertiseDto {
   title: string | undefined;
   type: string | undefined;
   creator: string | undefined;
-  createDate: Date | undefined;
+  createDate!: string;
   description: string | undefined;
   extraDataFile: string | undefined;
   userId: string | undefined;
@@ -23,7 +23,7 @@ export interface IAdvertiseDto {
   _id: string | undefined;
   image: string | undefined;
   creator: string | undefined;
-  createDate: Date | undefined;
+  createDate: string;
   description: string | undefined;
   extraDataFile: string | undefined;
   userId: string | undefined;

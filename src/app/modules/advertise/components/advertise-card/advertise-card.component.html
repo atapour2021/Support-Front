@@ -1,17 +1,80 @@
-<div class="wrapper" ontouchstart="this.classList.toggle('hover');">
-  <div class="flipper">
-    <div class="card-front">
-      <div class="logo">
-        <h2 class="initial">D</h2>
+<div class="d-none d-md-block col-md-12 card__height">
+  <div class="card text-white h-100 card__bg__clolor mb-3">
+    <div class="d-none">{{ data._id }}</div>
+    <div class="row no-gutters">
+      <div class="col-md-5 col-sm-12">
+        <img
+          *ngIf="!data.image"
+          src="../../../../../assets/img/cover.jpeg"
+          height="300"
+          class="card-img" />
+        <img
+          *ngIf="data.image"
+          [src]="baseUrl + '/' + data.image"
+          height="300"
+          class="card-img" />
       </div>
-      <div class="oval"></div>
+      <div class="col-md-7 col-sm-12">
+        <div class="card-body">
+          <h5 class="card-title">{{ data.title }}</h5>
+          <p class="card-text">{{ data.type }}</p>
+          <p class="card-text">{{ data.creator }}</p>
+          <p *ngIf="data.createDate" class="card-text">
+            {{ data.createDate | jalalidateconvertor }}
+          </p>
+          <p class="card-text">{{ data.description }}</p>
+        </div>
+        <div class="card__button">
+          <button (click)="onEditClick($event)" class="btn">
+            <i class="fa fa-edit text-warning"></i>
+          </button>
+          <button (click)="onRemoveClick($event)" class="btn mx-2">
+            <i class="fa fa-trash text-danger"></i>
+          </button>
+          <button
+            *ngIf="data.extraDataFile"
+            (click)="onDownloadClick(data.extraDataFile!)"
+            class="btn">
+            <i class="fa fa-download text-info"></i>
+          </button>
+        </div>
+      </div>
     </div>
-    <div class="card-back">
-      <h1 class="name">Daniel Destefanis</h1>
-      <h3 class="h3 about">Front End Development & Web Design</h3>
-      <h3 class="h3 contact-info">
-        <a href="http://www.danielrd.com">Danielrd.com</a>
-      </h3>
+  </div>
+</div>
+
+<div class="card text-white d-sm-none col-sm-12 my-2 card__bg__clolor">
+  <div class="d-none">{{ data._id }}</div>
+  <img
+    *ngIf="!data.image"
+    src="../../../../../assets/img/cover.jpeg"
+    class="card-img-top" />
+  <img
+    *ngIf="data.image"
+    [src]="baseUrl + '/' + data.image"
+    class="card-img-top" />
+  <div class="card-body">
+    <h5 class="card-title">{{ data.title }}</h5>
+    <p class="card-text">{{ data.type }}</p>
+    <p class="card-text">{{ data.creator }}</p>
+    <p *ngIf="data.createDate" class="card-text">
+      {{ data.createDate | jalalidateconvertor }}
+    </p>
+    <p class="card-text">{{ data.description }}</p>
+    <div class="my-5"></div>
+    <div class="card__sm__button">
+      <button (click)="onEditClick($event)" class="btn">
+        <i class="fa fa-edit text-warning"></i>
+      </button>
+      <button (click)="onRemoveClick($event)" class="btn mx-2">
+        <i class="fa fa-trash text-danger"></i>
+      </button>
+      <button
+        *ngIf="data.extraDataFile"
+        (click)="onDownloadClick(data.extraDataFile!)"
+        class="btn">
+        <i class="fa fa-download text-info"></i>
+      </button>
     </div>
   </div>
 </div>

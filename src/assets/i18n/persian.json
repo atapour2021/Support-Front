@@ -27,5 +27,18 @@
   "Creator": "ایجاد کننده",
   "CreateDate": "تاریخ ایجاد پیام",
   "Users": "کاربران",
-  "Advertises": "تبلیغات"
+  "Advertises": "تبلیغات",
+  "ValideSize": "حداکثر حجم فایل",
+  "InValideFileSize": "حجم فایل انتخابی مجاز نیست",
+  "UploadFile": "انتخاب فایل",
+  "InValideFileType": "نوع فایل انتخابی مجاز نیست",
+  "ValidFileTypeIS": "نوع فایل مجاز",
+  "Cancel": "کنسل",
+  "Save": "ثبت",
+  "ImageUpload": "بارگزاری تصویر",
+  "FileUpload": "بارگزاری فایل",
+  "AddAdvertise": "ثبت تبلیغ",
+  "EditAdvertise": "ویرایش تبلیغ",
+  "Title": "عنوان",
+  "Type": "نوع"
 }

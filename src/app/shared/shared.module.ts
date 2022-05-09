@@ -10,12 +10,14 @@ import {
   CardListComponent,
   ComboboxComponent,
   DatePickerComponent,
+  FileUploaderComponent,
   NumericTextComponent,
   PaginationComponent,
   TextAreaInputComponent,
   TextComponent,
 } from './components';
 import { CardService } from './components/card-list/card-list.service';
+import { FileUploaderService } from './components/file-uploader/file-uploader.service';
 import { MaterialModule } from './material.module';
 
 @NgModule({
@@ -27,6 +29,7 @@ import { MaterialModule } from './material.module';
     TextComponent,
     CardListComponent,
     PaginationComponent,
+    FileUploaderComponent,
   ],
   imports: [
     CommonModule,
@@ -54,8 +57,9 @@ import { MaterialModule } from './material.module';
     TextComponent,
     CardListComponent,
     PaginationComponent,
+    FileUploaderComponent,
   ],
-  providers: [CardService],
+  providers: [CardService, FileUploaderService],
 })
 export class SharedModule {}
 

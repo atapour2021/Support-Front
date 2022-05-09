@@ -1,1 +1,48 @@
-<p>create works!</p>
+<h2 mat-dialog-title>{{ 'AddAdvertise' | translate }}</h2>
+<div mat-dialog-content>
+  <form class="row" #complaintForm="ngForm">
+    <app-file-uploader
+      [Label]="'ImageUpload'"
+      [fileTypeLimit]="'any'"
+      [fileMaxSize]="1"
+      (uploadFile)="uploadImage($event)"></app-file-uploader>
+    <app-file-uploader
+      [Label]="'FileUpload'"
+      [fileTypeLimit]="'any'"
+      [fileMaxSize]="1"
+      (uploadFile)="uploadFile($event)"></app-file-uploader>
+    <app-text
+      name="title"
+      [Label]="'Title' | translate"
+      [(ngModel)]="advertise.title"
+      [isRequired]="true">
+    </app-text>
+    <app-text
+      name="type"
+      [Label]="'Type' | translate"
+      [(ngModel)]="advertise.type"
+      [isRequired]="true">
+    </app-text>
+    <app-text-area-input
+      name="description"
+      [Label]="'Description' | translate"
+      [(ngModel)]="advertise.description">
+    </app-text-area-input>
+  </form>
+</div>
+<mat-dialog-actions class="justify-content-end">
+  <button class="btn btn-hover-light-info mx-1" (click)="onCloseClick()">
+    <i class="fas fa-times"></i>
+    {{ 'Cancel' | translate }}
+  </button>
+  <button
+    class="btn btn-success"
+    (click)="onSaveClick()"
+    [disabled]="!complaintForm.form.valid">
+    <i class="fas fa-save"></i>
+    {{ 'Save' | translate }}
+    <mat-icon *ngIf="saving">
+      <mat-spinner color="accent" diameter="20"> </mat-spinner>
+    </mat-icon>
+  </button>
+</mat-dialog-actions>

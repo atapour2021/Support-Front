@@ -7,7 +7,12 @@
   </button> -->
 </div>
 <div class="row m-3">
-  <app-advertise-card></app-advertise-card>
+  <app-advertise-card
+    class="col-md-6 col-sm-12 my-1"
+    *ngFor="let advertise of advertiseList"
+    (editClick)="editAdvertise($event)"
+    (removeClick)="removeAdvertise($event)"
+    [data]="advertise"></app-advertise-card>
 </div>
 <app-pagination
   *ngIf="showPagination"
