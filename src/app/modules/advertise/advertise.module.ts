@@ -6,6 +6,7 @@ import { AdvertiseRoutingModule } from './advertise.routing.module';
 import { AdvertiseCardComponent } from './components';
 import { AdvertisesService } from './service/advertise.service';
 import { CreateComponent } from './view/create/create.component';
+import { ExtraFileComponent } from './view/extra-file/extra-file.component';
 import { ListComponent } from './view/list/list.component';
 import { UpdateComponent } from './view/update/update.component';
 
@@ -15,6 +16,7 @@ import { UpdateComponent } from './view/update/update.component';
     CreateComponent,
     UpdateComponent,
     AdvertiseCardComponent,
+    ExtraFileComponent
   ],
   imports: [
     CoreModule,

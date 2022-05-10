@@ -38,6 +38,6 @@ export class AdvertisesService {
 
   editAdvertise(body: AdvertiseDto, id: string): Observable<any> {
     let url = `${this.baseUrl}/Advertises`;
-    return this._apiService.put(body, id, url);
+    return this._apiService.put(body, url, id);
   }
 }

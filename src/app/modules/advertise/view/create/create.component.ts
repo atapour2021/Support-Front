@@ -34,10 +34,10 @@ export class CreateComponent {
   }
 
   uploadFile(body: any): void {
-    this.advertise.extraDataFile = body.data;
-  }
-  uploadImage(body: any): void {
     this.advertise.image = body.data;
+  }
+  removeFile(body: any): void {
+    this.advertise.image = undefined;
   }
 
   onCloseClick(): void {

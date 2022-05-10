@@ -24,7 +24,7 @@
       <i
         class="fa fa-trash remove-file"
         title="{{ 'RemoveFile' | translate }}"
-        (click)="removeFile()"></i>
+        (click)="onRemoveFileClick(src)"></i>
       <div class="row file__error">
         <span *ngIf="!fileTypeValid" class="text-danger col-12">
           {{ 'InValideFileType' | translate }} ,

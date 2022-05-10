@@ -6,6 +6,7 @@ import swal from 'sweetalert2';
 import { AdvertiseDto, AdvertiseLisArgDto } from '../../dto/advertise.dto';
 import { AdvertisesService } from '../../service/advertise.service';
 import { CreateComponent } from '../create/create.component';
+import { ExtraFileComponent } from '../extra-file/extra-file.component';
 import { UpdateComponent } from '../update/update.component';
 
 @Component({
@@ -44,6 +45,7 @@ export class ListComponent implements OnInit {
     this.loading = true;
     this._advertisesService.getAdvertises(data).subscribe((response: any) => {
       this.loading = false;
+      console.log('response', response);
       if (!response.success) return;
       this.advertiseList = response.listData;
       this.totalElement = response.totalItem;
@@ -103,6 +105,24 @@ export class ListComponent implements OnInit {
             });
         }
       });
+  }
+  addExtraFileToAdvertise(id: string) {
+    const dialogRef = this.dialog.open(ExtraFileComponent, {
+      width: '450px',
+      disableClose: true,
+      data: {
+        id: id,
+        extraFileModalTitle: `افزودن فایل ${this.getAdvertiseName(id)}`,
+      },
+    });
+
+    dialogRef.componentInstance.onSave.subscribe(result => {
+      if (!result) return;
+      if (result.success) {
+        dialogRef.close();
+        this.getAdvertiseList(this.advertiseListArg);
+      }
+    });
   }
 
   // onSearchClick(): void {

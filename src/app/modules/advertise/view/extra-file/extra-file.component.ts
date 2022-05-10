@@ -12,21 +12,21 @@ import { AdvertisesService } from '../../service/advertise.service';
 import { environment } from 'src/environments/environment';
 
 @Component({
-  selector: 'app-update',
-  templateUrl: './update.component.html',
-  styleUrls: ['./update.component.scss'],
+  selector: 'app-extra-file',
+  templateUrl: './extra-file.component.html',
+  styleUrls: ['./extra-file.component.scss'],
 })
-export class UpdateComponent implements OnInit {
+export class ExtraFileComponent implements OnInit {
   saving = false;
   advertise = new AdvertiseDto();
   showFile = false;
   baseUrl!: string;
-  imgPath!: string;
+  filePath!: string;
 
   @Output() onSave = new EventEmitter<any>();
 
   constructor(
-    public dialogRef: MatDialogRef<UpdateComponent>,
+    public dialogRef: MatDialogRef<ExtraFileComponent>,
     public dialog: MatDialog,
     public translate: TranslateService,
     private _advertisesService: AdvertisesService,
@@ -51,16 +51,16 @@ export class UpdateComponent implements OnInit {
       if (!result.success) return;
       this.advertise.init(result.data);
       this.advertise.createDate = Date.now().toString();
-      this.imgPath = result.data.image;
+      this.filePath = result.data.extraDataFile;
       this.showFile = true;
     });
   }
 
   uploadFile(body: any): void {
-    this.advertise.image = body.data;
+    this.advertise.extraDataFile = body.data;
   }
   removeFile(): void {
-    this.advertise.image = '';
+    this.advertise.extraDataFile = '';
   }
 
   onCloseClick(): void {

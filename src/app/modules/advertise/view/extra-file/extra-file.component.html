@@ -1,31 +1,14 @@
-<h2 mat-dialog-title>{{ data.editModalTitle | translate }}</h2>
+<h2 mat-dialog-title>{{ data.extraFileModalTitle | translate }}</h2>
 <div mat-dialog-content>
   <form class="row" #complaintForm="ngForm">
     <app-file-uploader
       *ngIf="showFile"
-      [src]="baseUrl + '/' + imgPath"
-      [Label]="'ImageUpload'"
+      [src]="baseUrl + '/' + filePath"
+      [Label]="'FileUpload'"
       [fileTypeLimit]="'any'"
       [fileMaxSize]="1"
       (removeFile)="removeFile()"
       (uploadFile)="uploadFile($event)"></app-file-uploader>
-    <app-text
-      name="title"
-      [Label]="'Title' | translate"
-      [(ngModel)]="advertise.title"
-      [isRequired]="true">
-    </app-text>
-    <app-text
-      name="type"
-      [Label]="'Type' | translate"
-      [(ngModel)]="advertise.type"
-      [isRequired]="true">
-    </app-text>
-    <app-text-area-input
-      name="description"
-      [Label]="'Description' | translate"
-      [(ngModel)]="advertise.description">
-    </app-text-area-input>
   </form>
 </div>
 <mat-dialog-actions class="justify-content-end">

@@ -13,6 +13,7 @@ export class AdvertiseCardComponent implements OnInit {
 
   @Output() editClick = new EventEmitter<string>();
   @Output() removeClick = new EventEmitter<string>();
+  @Output() uploadClick = new EventEmitter<string>();
 
   baseUrl!: string;
 
@@ -36,5 +37,9 @@ export class AdvertiseCardComponent implements OnInit {
   onDownloadClick(file: string): void {
     const url = `${this.baseUrl}/${file}`;
     window.open(url);
+  }
+  onUploadClick(event: any): void {
+    const id = event.target.closest('.card').firstChild.textContent;
+    this.uploadClick.emit(id);
   }
 }

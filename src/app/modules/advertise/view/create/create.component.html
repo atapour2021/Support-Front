@@ -4,12 +4,8 @@
     <app-file-uploader
       [Label]="'ImageUpload'"
       [fileTypeLimit]="'any'"
-      [fileMaxSize]="1"
-      (uploadFile)="uploadImage($event)"></app-file-uploader>
-    <app-file-uploader
-      [Label]="'FileUpload'"
-      [fileTypeLimit]="'any'"
-      [fileMaxSize]="1"
+      [fileMaxSize]="10"
+      (removeFile)="removeFile($event)"
       (uploadFile)="uploadFile($event)"></app-file-uploader>
     <app-text
       name="title"

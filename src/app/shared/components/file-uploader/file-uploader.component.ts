@@ -24,6 +24,7 @@ export class FileUploaderComponent implements OnInit {
   @Input() Label = 'انتخاب فایل';
 
   @Output() uploadFile = new EventEmitter<any>();
+  @Output() removeFile = new EventEmitter<any>();
 
   constructor(
     public translate: TranslateService,
@@ -45,8 +46,8 @@ export class FileUploaderComponent implements OnInit {
   uploadContent(event: any): void {
     let file = event.target.files[0];
     if (!file) return;
+    this.file = file;
     let isValide = this.validateFile(file);
-    this.removeFile();
     if (isValide) this.showFile(file);
   }
   showFile(file: File): void {
@@ -55,12 +56,9 @@ export class FileUploaderComponent implements OnInit {
     this.fileSizeValid = true;
     const url = URL.createObjectURL(file);
     this.fileSrc = this.sanitizer.bypassSecurityTrustUrl(url);
-    this.file = file;
     this.onUploadFileClick();
   }
-  removeFile(): void {
-    this.fileSrc = '';
-  }
+
   validateFile(file: any): boolean {
     let isSizeValid = this.validateFileSize(file);
     let isTypeValid = this.validateFieType(file);
@@ -98,14 +96,21 @@ export class FileUploaderComponent implements OnInit {
   }
 
   onUploadFileClick(): void {
-    this.saving = true;
+    this.formData.delete('file');
     this.formData.append('file', this.file);
     this._fileUploaderService
       .uploadFile(this.formData)
       .subscribe((responce: any) => {
-        this.saving = false;
         this.uploadFile.emit(responce);
         this._notificationService.showNotification(responce);
       });
+  }
+  onRemoveFileClick(fileSrc: string): void {
+    const path = fileSrc.split('/').pop();
+    this.fileSrc = '';
+    this._fileUploaderService.deleteFile(path!).subscribe((responce: any) => {
+      this.removeFile.emit(responce);
+      this._notificationService.showNotification(responce);
+    });
   }
 }

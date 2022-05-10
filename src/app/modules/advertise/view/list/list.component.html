@@ -11,6 +11,7 @@
     class="col-md-6 col-sm-12 my-1"
     *ngFor="let advertise of advertiseList"
     (editClick)="editAdvertise($event)"
+    (uploadClick)="addExtraFileToAdvertise($event)"
     (removeClick)="removeAdvertise($event)"
     [data]="advertise"></app-advertise-card>
 </div>
