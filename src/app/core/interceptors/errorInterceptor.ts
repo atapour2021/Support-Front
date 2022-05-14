@@ -6,9 +6,11 @@ import {
   HttpRequest,
 } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { Toaster } from 'ngx-toast-notifications';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
+import { RefreshTokenDto } from 'src/app/auth/dto/auth.dto';
 import { AuthService } from 'src/app/auth/service/auth.service';
 // import { AuthService } from 'src/app/auth/auth.service';
 
@@ -40,8 +42,15 @@ export class HttpErrorInterceptor implements HttpInterceptor {
   handleServerError(error: HttpErrorResponse): void {
     if (error.status == 400) this.handleMessage('درخواست شما نامعتبر میباشد');
     else if (error.status == 401) {
-      this._authService.logout();
+      const userId = this._authService.getUserIdFromToken();
+      const token = localStorage.getItem('token');
+      const data = new RefreshTokenDto();
+      data.init({
+        userId: userId,
+        token: token!,
+      });
       this.handleMessage('لطفا مجددا وارد حساب کاربری خود شوید');
+      this.getRefreshToken(data);
     } else if (error.status == 403)
       this.handleMessage('شما به این بخش دسترسی ندارید');
     else if (error.status == 404)
@@ -57,6 +66,15 @@ export class HttpErrorInterceptor implements HttpInterceptor {
       type: 'danger',
       duration: 4000,
       position: 'bottom-center',
+    });
+  }
+
+  getRefreshToken(data: RefreshTokenDto): void {
+    this._authService.getRefreshToken(data).subscribe((response: any) => {
+      if (!response.success) return;
+      localStorage.clear();
+      localStorage.setItem('token', response.data);
+      location.reload();
     });
   }
 }

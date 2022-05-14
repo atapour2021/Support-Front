@@ -40,5 +40,9 @@
   "AddAdvertise": "ثبت تبلیغ",
   "EditAdvertise": "ویرایش تبلیغ",
   "Title": "عنوان",
-  "Type": "نوع"
+  "Type": "نوع",
+  "ChangeToSponserRequest": "درخاست تغییر سمت به اسپانسر",
+  "IsLegal": "حقوقی بودن",
+  "CompanyName": "نام شرکت",
+  "LegalCode": "کد اشخاص حقوقی"
 }

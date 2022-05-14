@@ -122,7 +122,15 @@ export class ContentComponent implements OnInit, AfterViewInit {
   }
 
   onLogOutClick(): void {
-    this.authService.logout();
+    const userId = this.authService.getUserIdFromToken();
+    this.logout(userId);
+  }
+  logout(id: string): void {
+    this.authService.logout(id).subscribe(result => {
+      if (!result.success) return;
+      localStorage.clear();
+      this.router.navigate(['/auth/login']);
+    });
   }
   openNotifList(): void {
     this._bottomSheet.open(NotificationListComponent, {

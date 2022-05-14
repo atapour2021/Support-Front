@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ApiHelperService } from 'src/app/core/services';
 import { environment } from 'src/environments/environment';
-import { AddAvatarDto, ProfileDto } from '../dto/profile.dto';
+import { AddAvatarDto, ChangeToSponsorDto, ProfileDto } from '../dto/profile.dto';
 
 @Injectable({
   providedIn: 'root',
@@ -41,6 +41,11 @@ export class ProfileService {
 
   addAvatar(data: AddAvatarDto): Observable<any> {
     const url = `${this.baseUrl}/Avatar-Profile`;
+    return this._apiService.post(data, url);
+  }
+
+  changeToSponsor(data: ChangeToSponsorDto): Observable<any> {
+    const url = `${this.baseUrl}/Sponsors`;
     return this._apiService.post(data, url);
   }
 }

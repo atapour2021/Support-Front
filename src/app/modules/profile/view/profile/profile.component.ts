@@ -1,6 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
-import { AddAvatarDto, ProfileDto } from '../../dto/profile.dto';
+import {
+  AddAvatarDto,
+  ChangeToSponsorDto,
+  ProfileDto,
+  Role,
+} from '../../dto/profile.dto';
 import { ProfileService } from '../../service/profile.service';
 import { environment } from 'src/environments/environment';
 import { NotificationService } from 'src/app/core/services';
@@ -13,9 +18,15 @@ import { NotificationService } from 'src/app/core/services';
 export class ProfileComponent implements OnInit {
   profileId: string | undefined;
   profile = new ProfileDto();
+  sponsorRole: Role = 'sponsor';
   file!: File;
   baseUrl: string | undefined;
   addAvatarArg = new AddAvatarDto();
+  changeToSponsor = new ChangeToSponsorDto();
+  isLegalCmbData: Array<{ id: boolean; name: string }> = [
+    { id: true, name: 'بله' },
+    { id: false, name: 'خیر' },
+  ];
 
   constructor(
     public translate: TranslateService,
@@ -27,6 +38,8 @@ export class ProfileComponent implements OnInit {
 
     this.profileId = JSON.parse(localStorage.getItem('user')!).profileId;
     this.baseUrl = `${environment.baseUrl}/file-uploader`;
+
+    this.changeToSponsor.isLegal = false;
   }
 
   ngOnInit(): void {
@@ -80,6 +93,18 @@ export class ProfileComponent implements OnInit {
         if (!response_.success) return;
         this.getProfile(this.profileId!);
         this.notificationService.showNotification(response_);
+      });
+  }
+
+  onChangeToSponsorClick(): void {
+    const userId = JSON.parse(localStorage.getItem('user')!).id;
+    this.changeToSponsor.userId = userId;
+
+    this.profileService
+      .changeToSponsor(this.changeToSponsor)
+      .subscribe((response_: any) => {
+        if (!response_.success) return;
+        this.notificationService.showNotification(response_.data);
       });
   }
 }

@@ -47,3 +47,23 @@ export interface IAddAvatarDto {
   id: string | undefined;
   imagePath: string | undefined;
 }
+
+export class ChangeToSponsorDto implements IChangeToSponsorDto {
+  userId: string | undefined;
+  isLegal: boolean | undefined;
+  companyName: string | undefined;
+  legalCode: string | undefined;
+
+  init(data: IChangeToSponsorDto): void {
+    this.userId = data['userId'];
+    this.isLegal = data['isLegal'];
+    this.companyName = data['companyName'];
+    this.legalCode = data['legalCode'];
+  }
+}
+export interface IChangeToSponsorDto {
+  userId: string | undefined;
+  isLegal: boolean | undefined;
+  companyName: string | undefined;
+  legalCode: string | undefined;
+}

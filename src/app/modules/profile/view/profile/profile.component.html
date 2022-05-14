@@ -102,5 +102,40 @@
         </form>
       </div>
     </div>
+    <div
+      *ngIf="profile.userRole !== sponsorRole"
+      class="card col-md-4 col-sm-12 my-2">
+      <div class="card-header">{{ 'ChangeToSponserRequest' | translate }}</div>
+      <div class="card-body">
+        <form #profileForm="ngForm" class="row">
+          <app-combobox
+            class="col-12"
+            name="isLegal"
+            [data]="isLegalCmbData"
+            [filterable]="false"
+            [Label]="'IsLegal' | translate"
+            [(ngModel)]="changeToSponsor.isLegal"
+            [isRequired]="true">
+          </app-combobox>
+          <app-text
+            class="col-12"
+            name="companyName"
+            [Label]="'CompanyName' | translate"
+            [(ngModel)]="changeToSponsor.companyName">
+          </app-text>
+          <app-numeric-text
+            class="col-12"
+            name="legalCode"
+            [Label]="'LegalCode' | translate"
+            [(ngModel)]="changeToSponsor.legalCode">
+          </app-numeric-text>
+          <button
+            class="btn btn-outline-primary m-auto"
+            (click)="onChangeToSponsorClick()">
+            {{ 'ChangeToSponserRequest' | translate }}
+          </button>
+        </form>
+      </div>
+    </div>
   </div>
 </div>

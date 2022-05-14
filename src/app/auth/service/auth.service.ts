@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { ApiHelperService } from 'src/app/core/services';
 import { environment } from 'src/environments/environment';
-import { LoginDto, RegisterDto } from '../dto/auth.dto';
+import { LoginDto, RefreshTokenDto, RegisterDto } from '../dto/auth.dto';
+import jwt_decode from 'jwt-decode';
 
 @Injectable({
   providedIn: 'root',
@@ -11,7 +11,7 @@ import { LoginDto, RegisterDto } from '../dto/auth.dto';
 export class AuthService {
   private baseUrl: string;
 
-  constructor(private _apiService: ApiHelperService, private router: Router) {
+  constructor(private _apiService: ApiHelperService) {
     this.baseUrl = environment.baseUrl;
   }
 
@@ -21,6 +21,12 @@ export class AuthService {
     else isAuth = false;
 
     return isAuth;
+  }
+
+  getUserIdFromToken(): string {
+    const token = localStorage.getItem('token');
+    const decodedToken: any = jwt_decode(token!);
+    return decodedToken.id;
   }
 
   Login(body: LoginDto): Observable<any> {
@@ -33,8 +39,13 @@ export class AuthService {
     return this._apiService.post<RegisterDto>(body, url);
   }
 
-  logout(): void {
-    localStorage.clear();
-    this.router.navigate(['/auth/login']);
+  logout(userId: string): Observable<any> {
+    const url = `${this.baseUrl}/logout`;
+    return this._apiService.post<{ userId: string }>({ userId: userId }, url);
+  }
+
+  getRefreshToken(data: RefreshTokenDto): Observable<any> {
+    const url = `${this.baseUrl}/refresh-token`;
+    return this._apiService.post<RefreshTokenDto>(data, url);
   }
 }
