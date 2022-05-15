@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
+import jwt_decode from 'jwt-decode';
 import { Observable } from 'rxjs';
 import { ApiHelperService } from 'src/app/core/services';
 import { environment } from 'src/environments/environment';
-import { LoginDto, RefreshTokenDto, RegisterDto } from '../dto/auth.dto';
-import jwt_decode from 'jwt-decode';
+import { LoginDto, RegisterDto } from '../dto/auth.dto';
 
 @Injectable({
   providedIn: 'root',
@@ -44,8 +44,8 @@ export class AuthService {
     return this._apiService.post<{ userId: string }>({ userId: userId }, url);
   }
 
-  getRefreshToken(data: RefreshTokenDto): Observable<any> {
-    const url = `${this.baseUrl}/refresh-token`;
-    return this._apiService.post<RefreshTokenDto>(data, url);
+  getRefreshToken(): Observable<any> {
+    const url = `${this.baseUrl}/refreshToken`;
+    return this._apiService.get(url, true);
   }
 }

@@ -30,17 +30,3 @@ export interface IRegisterDto {
   fullName: string;
   nationalCode: string;
 }
-
-export class RefreshTokenDto implements IRefreshTokenDto {
-  userId!: string;
-  token!: string;
-
-  init(data: IRefreshTokenDto): void {
-    this.userId = data['userId'];
-    this.token = data['token'];
-  }
-}
-export interface IRefreshTokenDto {
-  userId: string;
-  token: string;
-}
