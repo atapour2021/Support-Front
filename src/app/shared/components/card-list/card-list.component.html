@@ -40,6 +40,16 @@
               data.value | translateBoolean: 'active'
             }}</span>
           </span>
+          <span *ngIf="data.name === 'RequestState'">
+            <span class="text-primary">{{
+              data.value | requestStatePipe
+            }}</span>
+          </span>
+          <span *ngIf="data.name === 'Type'">
+            <span class="text-primary">{{
+              data.value | requestTypePipe
+            }}</span>
+          </span>
           <span *ngIf="data.name === 'Role'">
             <span class="text-primary">{{ data.value | rolePipe }}</span>
           </span>

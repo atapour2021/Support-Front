@@ -104,7 +104,7 @@ export class ProfileComponent implements OnInit {
       .changeToSponsor(this.changeToSponsor)
       .subscribe((response_: any) => {
         if (!response_.success) return;
-        this.notificationService.showNotification(response_.data);
+        this.notificationService.showNotification(response_);
       });
   }
 }

@@ -6,6 +6,7 @@ import {
   HttpRequest,
 } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { Toaster } from 'ngx-toast-notifications';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
@@ -18,7 +19,8 @@ import { AuthService } from 'src/app/auth/service/auth.service';
 export class HttpErrorInterceptor implements HttpInterceptor {
   constructor(
     private _notificationService: Toaster,
-    private _authService: AuthService
+    private _authService: AuthService,
+    private router: Router
   ) {}
 
   intercept(
@@ -60,7 +62,10 @@ export class HttpErrorInterceptor implements HttpInterceptor {
 
   getRefreshToken(): void {
     this._authService.getRefreshToken().subscribe((response: any) => {
-      if (!response.success) return;
+      if (!response.success) {
+        this.router.navigate(['/auth/login']);
+        this.handleMessage('کاربر یافت نشد!');
+      }
       localStorage.clear();
       localStorage.setItem('token', response.data);
       location.reload();

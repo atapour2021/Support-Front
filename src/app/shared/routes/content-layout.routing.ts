@@ -29,6 +29,10 @@ export const CONTENT_ROUTES: Routes = [
     path: 'tokens',
     loadChildren: () => import('../../modules').then(m => m.TokenModule),
   },
+  {
+    path: 'requests',
+    loadChildren: () => import('../../modules').then(m => m.RequestModule),
+  },
 
   {
     path: '**',

@@ -41,10 +41,13 @@
   "EditAdvertise": "ویرایش تبلیغ",
   "Title": "عنوان",
   "Type": "نوع",
-  "ChangeToSponserRequest": "درخاست تغییر سمت به اسپانسر",
+  "ChangeToSponserRequest": "درخواست تغییر سمت به اسپانسر",
   "IsLegal": "حقوقی بودن",
   "CompanyName": "نام شرکت",
   "LegalCode": "کد اشخاص حقوقی",
   "Token": "توکن",
-  "Expire": "انقضا"
+  "Expire": "انقضا",
+  "Requests": "درخواست ها",
+  "NoDataTextForShow": "داده ای برای نمایش وجود ندارد",
+  "RequestState": "وضعیت درخواست"
 }
