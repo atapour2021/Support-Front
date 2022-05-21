@@ -35,6 +35,11 @@
               data.value | translateBoolean: 'is'
             }}</span>
           </span>
+          <span *ngIf="data.name === 'Expire'">
+            <span class="text-primary">{{
+              data.value | translateBoolean: 'active'
+            }}</span>
+          </span>
           <span *ngIf="data.name === 'Role'">
             <span class="text-primary">{{ data.value | rolePipe }}</span>
           </span>

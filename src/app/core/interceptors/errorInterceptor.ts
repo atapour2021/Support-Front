@@ -39,7 +39,7 @@ export class HttpErrorInterceptor implements HttpInterceptor {
   }
   handleServerError(error: HttpErrorResponse): void {
     if (error.status == 400) this.handleMessage('درخواست شما نامعتبر میباشد');
-    else if (error.status == 401) this.getRefreshToken();
+    else if (error.status == 401 || error.status == 403) this.getRefreshToken();
     else if (error.status == 403)
       this.handleMessage('شما به این بخش دسترسی ندارید');
     else if (error.status == 404)

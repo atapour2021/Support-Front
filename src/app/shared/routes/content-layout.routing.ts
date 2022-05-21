@@ -25,7 +25,10 @@ export const CONTENT_ROUTES: Routes = [
     path: 'advertises',
     loadChildren: () => import('../../modules').then(m => m.AdvertiseModule),
   },
-
+  {
+    path: 'tokens',
+    loadChildren: () => import('../../modules').then(m => m.TokenModule),
+  },
 
   {
     path: '**',

@@ -1,0 +1,17 @@
+<div class="row m-3">
+  <ng-template #cardButtons>
+    <button class="btn" (click)="removeToken($event)">
+      <i class="fas fa-trash"></i>
+    </button>
+  </ng-template>
+  <app-card-list
+    [cardsSetting]="cardsSetting"
+    [initialTemplate]="cardButtons"
+    [loading]="loading"></app-card-list>
+</div>
+<app-pagination
+  *ngIf="showPagination"
+  [page]="page"
+  [pageSize]="pageSize"
+  [totalElement]="totalElement"
+  (pageChanged)="onPageChange($event)"></app-pagination>

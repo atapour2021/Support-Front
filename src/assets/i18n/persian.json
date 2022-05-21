@@ -44,5 +44,7 @@
   "ChangeToSponserRequest": "درخاست تغییر سمت به اسپانسر",
   "IsLegal": "حقوقی بودن",
   "CompanyName": "نام شرکت",
-  "LegalCode": "کد اشخاص حقوقی"
+  "LegalCode": "کد اشخاص حقوقی",
+  "Token": "توکن",
+  "Expire": "انقضا"
 }
