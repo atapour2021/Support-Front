@@ -22,7 +22,8 @@
   <app-card-list
     [cardsSetting]="cardsSetting"
     [initialTemplate]="cardButtons"
-    [loading]="loading"></app-card-list>
+    [loading]="loading"
+    (changeToggle)="confirmChangeUserRolerequest($event)"></app-card-list>
 </div>
 <app-pagination
   *ngIf="showPagination"

@@ -5,7 +5,8 @@ export class RequestDto implements IRequestDto {
   userId: string | undefined;
   requestDate: string | undefined;
   requestState: requestState | undefined;
-  description: boolean | undefined;
+  description: string | undefined;
+  confirm: boolean | undefined;
 
   init(data: IRequestDto): void {
     this.type = data['type'];
@@ -23,7 +24,8 @@ export interface IRequestDto {
   userId: string | undefined;
   requestDate: string | undefined;
   requestState: requestState | undefined;
-  description: boolean | undefined;
+  description: string | undefined;
+  confirm: boolean | undefined;
 }
 
 export type requestTpe = 'ChangeUserRoleToSponsor';

@@ -49,5 +49,6 @@
   "Expire": "انقضا",
   "Requests": "درخواست ها",
   "NoDataTextForShow": "داده ای برای نمایش وجود ندارد",
-  "RequestState": "وضعیت درخواست"
+  "RequestState": "وضعیت درخواست",
+  "Confirm": "تایید کردن"
 }

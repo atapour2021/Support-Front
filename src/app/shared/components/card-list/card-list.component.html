@@ -17,7 +17,7 @@
       <div class="row my-2">
         <mat-card-content *ngFor="let data of card.contents" class="col-md-6">
           {{ data.name | translate }}:
-          <span class="text-primary" *ngIf="!data.hasPipe">
+          <span class="text-primary" *ngIf="!data.hasPipe && !data.isToggle">
             <span class="text-primary">{{ data.value }}</span>
           </span>
           <span *ngIf="data.name.includes('Date')">
@@ -46,13 +46,17 @@
             }}</span>
           </span>
           <span *ngIf="data.name === 'Type'">
-            <span class="text-primary">{{
-              data.value | requestTypePipe
-            }}</span>
+            <span class="text-primary">{{ data.value | requestTypePipe }}</span>
           </span>
           <span *ngIf="data.name === 'Role'">
             <span class="text-primary">{{ data.value | rolePipe }}</span>
           </span>
+          <mat-slide-toggle
+            *ngIf="data.isToggle"
+            [(ngModel)]="data.value"
+            (click)="onChangeToggleClick($event, data)"
+            class="mx-2">
+          </mat-slide-toggle>
 
           <!-- <mat-slide-toggle
             *ngIf="data.isToggle"

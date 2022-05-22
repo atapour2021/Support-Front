@@ -25,4 +25,12 @@ export class RequestsService {
     let url = `${this.baseUrl}/Requests`;
     return this._apiService.delete<any>(url, id);
   }
+
+  confirmChangeUserRolerequest(id: string): Observable<any> {
+    let url = `${this.baseUrl}/Request-type/changeUserRole`;
+    const body = {
+      id: id,
+    };
+    return this._apiService.post<{ id: string }>(body, url);
+  }
 }

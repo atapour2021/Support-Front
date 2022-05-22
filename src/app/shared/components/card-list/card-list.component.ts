@@ -1,8 +1,10 @@
 import {
   Component,
   ElementRef,
+  EventEmitter,
   Input,
   OnInit,
+  Output,
   TemplateRef,
   ViewChild,
 } from '@angular/core';
@@ -18,6 +20,8 @@ export class CardListComponent implements OnInit {
   data: any[] = [];
   currentTemplate!: TemplateRef<any>;
 
+  @Output() changeToggle = new EventEmitter<{ event: any; data: any }>();
+
   @ViewChild('selectionId') selection!: ElementRef;
 
   @Input() cardsSetting: ICardSetting[] = [];
@@ -31,5 +35,9 @@ export class CardListComponent implements OnInit {
 
   ngOnInit(): void {
     this.currentTemplate = this.initialTemplate;
+  }
+
+  onChangeToggleClick(event: any, data: any): void {
+    this.changeToggle.emit({ event: event, data: data });
   }
 }

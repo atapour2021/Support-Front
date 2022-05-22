@@ -80,6 +80,11 @@ export class ListComponent implements OnInit {
             hasPipe: true,
           },
           {
+            name: 'Confirm',
+            value: item.confirm,
+            isToggle: true,
+          },
+          {
             name: 'Description',
             value: item.description,
           },
@@ -138,6 +143,28 @@ export class ListComponent implements OnInit {
             this.getRequestList(this.requestListArg);
             this.notificationService.showNotification(response);
           });
+        }
+      });
+  }
+  confirmChangeUserRolerequest(body: { event: any; data: any }): void {
+    const id = this._cardService.getSelevtion(body.event);
+    swal
+      .fire({
+        title: 'تایید درخواست ',
+        text: ` ${this.getRequestName(id)} را حذف کنید؟`,
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'بله',
+        cancelButtonText: 'خیر',
+      })
+      .then((result: any) => {
+        if (result.isConfirmed) {
+          this._RequestsService
+            .confirmChangeUserRolerequest(id)
+            .subscribe((response: any) => {
+              this.getRequestList(this.requestListArg);
+              this.notificationService.showNotification(response);
+            });
         }
       });
   }
